@@ -21,7 +21,7 @@ namespace Trip.Profile.Persistance.Base
             _profileWriterDbContext.Set<T>().Remove(entity);
             await _profileWriterDbContext.SaveChangesAsync();
         }
-
+         
         public async Task<T> SaveAsync(T entity)
         {
             _profileWriterDbContext.Set<T>().Add(entity);

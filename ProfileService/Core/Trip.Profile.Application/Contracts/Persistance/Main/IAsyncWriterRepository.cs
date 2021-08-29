@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Trip.Profile.Domain.Base;
+﻿using System.Threading.Tasks;
 
 namespace Trip.Profile.Application.Contracts.Persistance.Main
 {

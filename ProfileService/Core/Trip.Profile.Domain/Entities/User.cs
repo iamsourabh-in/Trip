@@ -4,7 +4,7 @@ using Trip.Profile.Domain.Base;
 
 namespace Trip.Profile.Domain.Entities
 {
-    public class User : Entity
+    public class User 
     {
         [Key]
         public int Id { get; set; }

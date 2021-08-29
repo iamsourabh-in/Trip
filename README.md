@@ -1,10 +1,10 @@
 # Trip
 
-#Identity
+# Identity
 dotnet ef migrations add InitialCreate -c ApplicationDbContext
 
 
-#Profile Service
+# Profile Service
 dotnet ef migrations add InitialCreate -c ProfileWriterDbContext
 
 dotnet ef migrations add InitialCreate -c ProfileReaderDbContext

@@ -16,6 +16,7 @@ namespace Trip.Profile.Persistance.Base
         {
             _profileReaderDbContext = profileReaderDbContext;
         }
+
         public async Task<T> GetAsync(T entity)
         {
             throw new NotImplementedException();
