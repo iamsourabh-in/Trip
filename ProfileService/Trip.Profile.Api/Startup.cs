@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Trip.Profile.Application.Ioc;
 using Trip.Profile.Persistance.Base;
 using Trip.Profile.Persistance.Ioc;
 
@@ -30,12 +32,21 @@ namespace Trip.Profile.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //////////////////////////////////////////
+            /// Register Persistance Services
+            /////////////////////////////////////////
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddDbContext<ProfileReaderDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileReader"), opt => opt.MigrationsAssembly(migrationAssembly)));
             services.AddDbContext<ProfileWriterDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileWriter"), opt => opt.MigrationsAssembly(migrationAssembly)));
             services.RegisterPersistanceServices();
 
+            services.RegisterApplicationServices();
+
             services.AddControllers();
+
+            //////////////////////////////////////////
+            /// Register Open APi Spec Services
+            /////////////////////////////////////////
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Trip.Profile.Api", Version = "v1" });

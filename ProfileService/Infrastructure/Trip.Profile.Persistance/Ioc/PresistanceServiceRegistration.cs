@@ -37,8 +37,9 @@ namespace Trip.Profile.Persistance.Ioc
                     if (!string.IsNullOrWhiteSpace(interfaceName))
                     {
 
-                        Type interfaceType = implementationToRegister.First(x => x.Name.Equals(interfaceName));
-                        services.AddScoped(interfaceType, implementation);
+                        Type interfaceType = interfaceToRegister.FirstOrDefault(x => x.Name.Equals(interfaceName));
+                        if (interfaceType != null)
+                            services.AddScoped(interfaceType, implementation);
                     }
                 }
             });
