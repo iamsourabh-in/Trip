@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Trip.Profile.Persistance.Base;
+using Trip.Profile.Persistance.Ioc;
 
 namespace Trip.Profile.Api
 {
@@ -32,6 +33,8 @@ namespace Trip.Profile.Api
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddDbContext<ProfileReaderDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileReader"), opt => opt.MigrationsAssembly(migrationAssembly)));
             services.AddDbContext<ProfileWriterDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileWriter"), opt => opt.MigrationsAssembly(migrationAssembly)));
+            services.RegisterPersistanceServices();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
