@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Trip.Profile.Application.Common;
 
 namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand

@@ -9,6 +9,8 @@ namespace Trip.Profile.Application.Mapper
         public MappingProfile()
         {
             CreateMap<AddUserCommand, User>().ReverseMap();
+            
+            CreateMap<AddUserCommandResponse, User>().ReverseMap();
 
             CreateMap<GetUserQuery, User>().ReverseMap();
 

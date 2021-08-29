@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Trip.Infrastructure.Common\Trip.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\..\Core\Trip.Profile.Application\Trip.Profile.Application.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Trip.Profile.Application\Trip.Profile.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Trip.Profile.Messaging\Trip.Profile.Messaging.csproj" />
     <ProjectReference Include="..\Infrastructure\Trip.Profile.Persistance\Trip.Profile.Persistance.csproj" />
   </ItemGroup>
 

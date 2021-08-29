@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProfileService", "ProfileSe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CreatorService", "CreatorService", "{9DEE0885-A0D5-4092-9F05-3981195B7D2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Creator.Api", "CreatorService\Trip.Creator.Api\Trip.Creator.Api.csproj", "{95B10157-EFBC-4433-8472-E3F7571D5A10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Creator.Api", "CreatorService\Trip.Creator.Api\Trip.Creator.Api.csproj", "{95B10157-EFBC-4433-8472-E3F7571D5A10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Profile.Api", "ProfileService\Trip.Profile.Api\Trip.Profile.Api.csproj", "{AA52BCEF-AA32-40B7-9EF8-1159651E05A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Profile.Api", "ProfileService\Trip.Profile.Api\Trip.Profile.Api.csproj", "{AA52BCEF-AA32-40B7-9EF8-1159651E05A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1FE29296-3305-4CD7-B549-D5FBE24785F5}"
 EndProject
@@ -40,7 +40,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{86D7E192-98AA-4711-8866-8AACA8277E50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Application.Common", "Common\Trip.Application.Common\Trip.Application.Common.csproj", "{DD966541-EB58-49BA-8353-6EC28DAA2B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Application.Common", "Common\Trip.Application.Common\Trip.Application.Common.csproj", "{DD966541-EB58-49BA-8353-6EC28DAA2B1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Infrastructure.Common", "Common\Trip.Infrastructure.Common\Trip.Infrastructure.Common.csproj", "{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Profile.Messaging", "ProfileService\Infrastructure\Trip.Profile.Messaging\Trip.Profile.Messaging.csproj", "{9C3789B1-ADC0-41EB-90F4-15045EF144D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Domain.Common", "Common\Trip.Domain.Common\Trip.Domain.Common.csproj", "{EFCA3A4D-77AB-4703-880E-2412B313EA90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +86,18 @@ Global
 		{DD966541-EB58-49BA-8353-6EC28DAA2B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD966541-EB58-49BA-8353-6EC28DAA2B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD966541-EB58-49BA-8353-6EC28DAA2B1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C3789B1-ADC0-41EB-90F4-15045EF144D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C3789B1-ADC0-41EB-90F4-15045EF144D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C3789B1-ADC0-41EB-90F4-15045EF144D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C3789B1-ADC0-41EB-90F4-15045EF144D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCA3A4D-77AB-4703-880E-2412B313EA90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCA3A4D-77AB-4703-880E-2412B313EA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCA3A4D-77AB-4703-880E-2412B313EA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCA3A4D-77AB-4703-880E-2412B313EA90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +115,9 @@ Global
 		{8EEDBA5E-0435-442D-883A-E6202E1EE7E6} = {3970AE55-3AF8-4DE5-B150-6CBEA3B5D95E}
 		{295AFC4E-7F4D-4961-B246-6F95EDB04418} = {D70CBE7E-4808-44E6-B915-F0C254A6C046}
 		{DD966541-EB58-49BA-8353-6EC28DAA2B1A} = {86D7E192-98AA-4711-8866-8AACA8277E50}
+		{404E8259-4C93-4BC6-9F8E-D5FDF9FE62B4} = {86D7E192-98AA-4711-8866-8AACA8277E50}
+		{9C3789B1-ADC0-41EB-90F4-15045EF144D9} = {D70CBE7E-4808-44E6-B915-F0C254A6C046}
+		{EFCA3A4D-77AB-4703-880E-2412B313EA90} = {86D7E192-98AA-4711-8866-8AACA8277E50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68F2BE62-8316-4373-849B-9A019F3CF5E6}
