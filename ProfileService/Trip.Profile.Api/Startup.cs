@@ -33,6 +33,17 @@ namespace Trip.Profile.Api
         public void ConfigureServices(IServiceCollection services)
         {
             //////////////////////////////////////////
+            /// Token Validation using IdentityServer4 Jwks
+            /////////////////////////////////////////
+            services.AddAuthentication("Bearer")
+            .AddIdentityServerAuthentication("Bearer", options =>
+            {
+                options.ApiName = "tripfeed";
+                options.Authority = "https://localhost:5443";
+                options.RequireHttpsMetadata = false;
+            });
+
+            //////////////////////////////////////////
             /// Register Persistance Services
             /////////////////////////////////////////
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;

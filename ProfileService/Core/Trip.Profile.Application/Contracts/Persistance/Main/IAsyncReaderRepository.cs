@@ -10,5 +10,7 @@ namespace Trip.Profile.Application.Contracts.Persistance
     public interface IAsyncReaderRepository<T> where T: class
     {
         Task<T> GetAsync(T entity);
+
+        Task<T> GetByIdAsync(int id);
     }
 }

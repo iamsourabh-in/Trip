@@ -17,10 +17,14 @@ namespace Trip.Profile.Persistance
 
         }
 
-        public async Task<User> GetAsync(User entity)
+        public async override Task<User> GetAsync(User entity)
         {
-            return (await _profileReaderDbContext.Users.Where(item => item.Id == entity.Id).FirstOrDefaultAsync());
+            return (await _profileReaderDbContext.Users.Where(item => item.Id == entity.Id || item.Email == entity.Email).FirstOrDefaultAsync());
         }
 
+        public async override Task<User> GetByIdAsync(int id)
+        {
+            return (await _profileReaderDbContext.Users.Where(item => item.Id == id).FirstOrDefaultAsync());
+        }
     }
 }

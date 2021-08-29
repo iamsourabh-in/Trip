@@ -7,7 +7,7 @@ using Trip.Profile.Application.Contracts.Persistance;
 
 namespace Trip.Profile.Persistance.Base
 {
-    public class BaseReaderRepository<T> : IAsyncReaderRepository<T> where T : class
+    public abstract class BaseReaderRepository<T> : IAsyncReaderRepository<T> where T : class
     {
 
         protected readonly ProfileReaderDbContext _profileReaderDbContext;
@@ -17,9 +17,10 @@ namespace Trip.Profile.Persistance.Base
             _profileReaderDbContext = profileReaderDbContext;
         }
 
-        public async Task<T> GetAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Task<T> GetAsync(T entity);
+
+
+        public abstract Task<T> GetByIdAsync(int id);
+
     }
 }

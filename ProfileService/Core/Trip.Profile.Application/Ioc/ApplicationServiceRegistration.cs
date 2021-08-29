@@ -1,11 +1,8 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Trip.Application.Common.Behaviour;
 
 namespace Trip.Profile.Application.Ioc
 {
@@ -16,9 +13,13 @@ namespace Trip.Profile.Application.Ioc
             //////////////////////////////////////////
             /// Register Application Services
             /////////////////////////////////////////
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehaviour<,>));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            
             return services;
 
         }
