@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,11 @@ namespace Trip.Profile.Persistance
         public UserReaderRepository(ProfileReaderDbContext profileReaderDbContext) : base(profileReaderDbContext)
         {
 
+        }
+
+        public async Task<User> GetAsync(User entity)
+        {
+            return (await _profileReaderDbContext.Users.Where(item => item.Id == entity.Id).FirstOrDefaultAsync());
         }
 
     }

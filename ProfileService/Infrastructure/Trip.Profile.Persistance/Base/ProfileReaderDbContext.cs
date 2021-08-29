@@ -12,7 +12,7 @@ namespace Trip.Profile.Persistance.Base
 {
     public class ProfileReaderDbContext : DbContext
     {
-        public DbSet<User> Blogs { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public ProfileReaderDbContext(DbContextOptions<ProfileReaderDbContext> options) : base(options)
         {

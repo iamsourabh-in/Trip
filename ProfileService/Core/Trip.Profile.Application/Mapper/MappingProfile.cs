@@ -1,4 +1,5 @@
 ﻿using Trip.Profile.Application.Feature.User.Command.AddUserCommand;
+using Trip.Profile.Application.Feature.User.Queries.GetUserQuery;
 using Trip.Profile.Domain.Entities;
 
 namespace Trip.Profile.Application.Mapper
@@ -8,6 +9,10 @@ namespace Trip.Profile.Application.Mapper
         public MappingProfile()
         {
             CreateMap<AddUserCommand, User>().ReverseMap();
+
+            CreateMap<GetUserQuery, User>().ReverseMap();
+
+            CreateMap<GetUserQueryResponse, User>().ReverseMap();
         }
     }
 }

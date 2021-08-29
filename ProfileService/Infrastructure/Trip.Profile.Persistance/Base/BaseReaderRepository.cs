@@ -10,7 +10,7 @@ namespace Trip.Profile.Persistance.Base
     public class BaseReaderRepository<T> : IAsyncReaderRepository<T> where T : class
     {
 
-        private readonly ProfileReaderDbContext _profileReaderDbContext;
+        protected readonly ProfileReaderDbContext _profileReaderDbContext;
 
         public BaseReaderRepository(ProfileReaderDbContext profileReaderDbContext)
         {

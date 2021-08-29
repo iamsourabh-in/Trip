@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Trip.Profile.Application.Feature.User.Command.AddUserCommand;
+using Trip.Profile.Application.Feature.User.Queries.GetUserQuery;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,9 +31,9 @@ namespace Trip.Profile.Api.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok(_mediator.Send(new GetUserQuery() { Id = id }));
         }
 
         // POST api/<UserController>
