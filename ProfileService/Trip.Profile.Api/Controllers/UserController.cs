@@ -31,16 +31,16 @@ namespace Trip.Profile.Api.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(_mediator.Send(new GetUserQuery() { Id = id }));
+            return Ok(await _mediator.Send(new GetUserQuery() { Id = id }));
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult Post([FromBody] AddUserCommand addUserCommand)
+        public async Task<IActionResult> Post([FromBody] AddUserCommand addUserCommand)
         {
-            return Ok(_mediator.Send(addUserCommand));
+            return Ok(await _mediator.Send(addUserCommand));
         }
 
         // PUT api/<UserController>/5

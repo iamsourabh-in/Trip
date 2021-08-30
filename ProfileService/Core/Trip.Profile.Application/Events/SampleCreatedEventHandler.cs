@@ -13,7 +13,7 @@ namespace Trip.Profile.Application.Events
     {
         public Task<Unit> Handle(SampleCreatedEvent request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(Unit.Value);
         }
     }
 }
