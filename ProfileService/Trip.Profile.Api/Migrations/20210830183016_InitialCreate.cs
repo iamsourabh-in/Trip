@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Trip.Profile.Api.Migrations.ProfileReaderDb
+namespace Trip.Profile.Api.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -11,8 +11,8 @@ namespace Trip.Profile.Api.Migrations.ProfileReaderDb
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    UserName = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     LastName = table.Column<string>(type: "TEXT", maxLength: 128, nullable: false),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: false),
@@ -20,8 +20,11 @@ namespace Trip.Profile.Api.Migrations.ProfileReaderDb
                     Gender = table.Column<string>(type: "TEXT", nullable: true),
                     Active = table.Column<bool>(type: "INTEGER", nullable: false),
                     Approved = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    Modified = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Modified = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

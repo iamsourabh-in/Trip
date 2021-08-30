@@ -11,6 +11,6 @@ namespace Trip.Profile.Application.Contracts.Persistance
     {
         Task<T> GetAsync(T entity);
 
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(string id);
     }
 }

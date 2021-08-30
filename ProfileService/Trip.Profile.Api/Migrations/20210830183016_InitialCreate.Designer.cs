@@ -9,7 +9,7 @@ using Trip.Profile.Persistance.Base;
 namespace Trip.Profile.Api.Migrations
 {
     [DbContext(typeof(ProfileWriterDbContext))]
-    [Migration("20210829124406_InitialCreate")]
+    [Migration("20210830183016_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,9 +20,8 @@ namespace Trip.Profile.Api.Migrations
 
             modelBuilder.Entity("Trip.Profile.Domain.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Active")
                         .HasColumnType("INTEGER");
@@ -34,6 +33,9 @@ namespace Trip.Profile.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
@@ -57,6 +59,18 @@ namespace Trip.Profile.Api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Modified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

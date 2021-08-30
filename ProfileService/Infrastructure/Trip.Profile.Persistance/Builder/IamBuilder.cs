@@ -13,6 +13,7 @@ namespace Trip.Profile.Persistance.Builder
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.Email).IsUnique();
                 entity.Property(e => e.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.Modified).HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
         }
     }

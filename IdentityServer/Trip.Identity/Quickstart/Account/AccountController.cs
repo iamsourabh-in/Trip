@@ -402,10 +402,12 @@ namespace IdentityServerHost.Quickstart.UI
                 // find user by username
                 var result = await _signInManager.UserManager.CreateAsync(user, registerModel.ConfirmPassword);
 
+
+
                 if (result.Succeeded && !result.Errors.Any())
                     ViewData["message"] = "User added successfully";
 
-                await RaiseNewUserCreatedInIdentityEvent(registerModel);
+                await RaiseNewUserCreatedInIdentityEvent(registerModel.Username, registerModel.Gender);
 
                 var vm = new RegisterViewModel();
                 return View(vm);
@@ -419,16 +421,19 @@ namespace IdentityServerHost.Quickstart.UI
 
         }
 
-        private async Task RaiseNewUserCreatedInIdentityEvent(RegisterInputModel registerModel)
+        private async Task RaiseNewUserCreatedInIdentityEvent(string username, string gender)
         {
+            var user = await _signInManager.UserManager.FindByNameAsync(username);
+
             var newUser = new NewUserCreatedInIdentityEvent()
             {
-                Email = registerModel.Email,
-                FirstName = registerModel.Username,
-                LastName = registerModel.Username,
-                Gender = registerModel.Gender,
-
-
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                FirstName = user.UserName,
+                LastName = user.UserName,
+                UserName = user.UserName,
+                Gender = gender,
+                Id = user.Id
             };
             await _busPublisher.PublishAsync<NewUserCreatedInIdentityEvent>("NewUserCreatedInIdentity", newUser);
         }

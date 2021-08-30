@@ -22,7 +22,7 @@ namespace Trip.Profile.Persistance
             return (await _profileReaderDbContext.Users.Where(item => item.Id == entity.Id || item.Email == entity.Email).FirstOrDefaultAsync());
         }
 
-        public async override Task<User> GetByIdAsync(int id)
+        public async override Task<User> GetByIdAsync(string id)
         {
             return (await _profileReaderDbContext.Users.Where(item => item.Id == id).FirstOrDefaultAsync());
         }

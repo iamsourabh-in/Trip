@@ -23,7 +23,6 @@ namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
         public async Task<AddUserCommandResponse> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
             await _userWriterRepository.SaveAsync(_mapper.Map<Trip.Profile.Domain.Entities.User>(request));
-            await _busPublisher.PublishAsync("UserCreated", new SampleCreatedEvent() { Result = "OK" });
             return new AddUserCommandResponse() { Id = 1 };
         }
     }

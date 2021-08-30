@@ -20,7 +20,7 @@ namespace Trip.Profile.Persistance.Base
         public abstract Task<T> GetAsync(T entity);
 
 
-        public abstract Task<T> GetByIdAsync(int id);
+        public abstract Task<T> GetByIdAsync(string id);
 
     }
 }
