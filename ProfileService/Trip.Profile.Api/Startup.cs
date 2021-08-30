@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Trip.Domain.Common.Messaging.Identity;
 using Trip.Domain.Common.Messaging.Profile;
 using Trip.Infrastructure.Common.RabbitMQ;
 using Trip.Profile.Application.Ioc;
@@ -89,7 +90,7 @@ namespace Trip.Profile.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip.Profile.Api v1"));
             }
 
-            app.UseRabbitMq().SubscribeEvent<SampleCreatedEvent>("UserCreated");
+            SubscribeEvents(app);
 
             app.UseHttpsRedirection();
 
@@ -101,6 +102,11 @@ namespace Trip.Profile.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void SubscribeEvents(IApplicationBuilder app)
+        {
+            app.UseRabbitMq().SubscribeEvent<NewUserCreatedInIdentityEvent>("NewUserCreatedInIdentity");
         }
     }
 }

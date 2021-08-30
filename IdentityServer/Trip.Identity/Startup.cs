@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using Trip.Domain.Common.Messaging.Identity;
 using Trip.Identity.Data;
+using Trip.Identity.Messaging.Ioc;
+using Trip.Infrastructure.Common.RabbitMQ;
 
 namespace Trip.Identity
 {
@@ -29,10 +32,15 @@ namespace Trip.Identity
             services.AddDbContext<ApplicationDbContext>(options =>
              options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
+            ////////////////////////////////////////////////////
+            /// Make the Idenitty Server use Identity User
+            ///////////////////////////////////////////////////
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
+            //////////////////////////////////////////
+            /// Register Idenitty Server
+            /////////////////////////////////////////
             services.AddIdentityServer()
                   //.AddInMemoryClients(Config.Clients)
                   //.AddInMemoryIdentityResources(Config.IdentityResources)
@@ -48,6 +56,12 @@ namespace Trip.Identity
                     options.ConfigureDbContext = builder => builder.UseSqlite(connectionString, opt => opt.MigrationsAssembly(migrationAssembly));
                 })
                 .AddDeveloperSigningCredential();
+
+            //////////////////////////////////////////
+            /// Register Messaging Services
+            /////////////////////////////////////////
+            services.RegisterMessagingService(Configuration);
+
 
             services.AddControllersWithViews();
         }

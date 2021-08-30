@@ -19,4 +19,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Trip.Identity.Application\Trip.Identity.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Trip.Identity.Messaging\Trip.Identity.Messaging.csproj" />
+  </ItemGroup>
+
 </Project>

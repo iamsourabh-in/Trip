@@ -1,4 +1,5 @@
-﻿using Trip.Profile.Application.Feature.User.Command.AddUserCommand;
+﻿using Trip.Domain.Common.Messaging.Identity;
+using Trip.Profile.Application.Feature.User.Command.AddUserCommand;
 using Trip.Profile.Application.Feature.User.Queries.GetUserQuery;
 using Trip.Profile.Domain.Entities;
 
@@ -15,6 +16,8 @@ namespace Trip.Profile.Application.Mapper
             CreateMap<GetUserQuery, User>().ReverseMap();
 
             CreateMap<GetUserQueryResponse, User>().ReverseMap();
+
+            CreateMap<NewUserCreatedInIdentityEvent,AddUserCommand>().ReverseMap();
         }
     }
 }

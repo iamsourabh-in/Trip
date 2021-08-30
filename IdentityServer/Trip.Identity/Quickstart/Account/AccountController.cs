@@ -18,6 +18,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Domain.Common.Messaging;
+using Trip.Domain.Common.Messaging.Identity;
+using Trip.Identity.Quickstart.Account;
 
 namespace IdentityServerHost.Quickstart.UI
 {
@@ -35,19 +38,22 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IBusPublisher _busPublisher;
 
         public AccountController(
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
-            SignInManager<IdentityUser> signInManager)
+            SignInManager<IdentityUser> signInManager,
+            IBusPublisher busPublisher)
         {
             _interaction = interaction;
             _clientStore = clientStore;
             _schemeProvider = schemeProvider;
             _events = events;
             _signInManager = signInManager;
+            _busPublisher = busPublisher;
         }
 
         /// <summary>
@@ -363,6 +369,68 @@ namespace IdentityServerHost.Quickstart.UI
             }
 
             return vm;
+        }
+
+
+        /// <summary>
+        /// Entry point into the login workflow
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> Register(string returnUrl)
+        {
+            // build a model so we know what to show on the login page
+            var vm = new RegisterViewModel();
+            return View(vm);
+        }
+
+        /// <summary>
+        /// Entry point into the login workflow
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterInputModel registerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser();
+                user.Email = registerModel.Email;
+                user.UserName = registerModel.Username;
+                user.NormalizedEmail = registerModel.Email.ToLower();
+                user.EmailConfirmed = true;
+                user.PhoneNumber = registerModel.PhoneNumber;
+                user.PhoneNumberConfirmed = true;
+                // find user by username
+                var result = await _signInManager.UserManager.CreateAsync(user, registerModel.ConfirmPassword);
+
+                if (result.Succeeded && !result.Errors.Any())
+                    ViewData["message"] = "User added successfully";
+
+                await RaiseNewUserCreatedInIdentityEvent(registerModel);
+
+                var vm = new RegisterViewModel();
+                return View(vm);
+            }
+            else
+            {
+                var vm = new RegisterViewModel();
+                vm.Username = registerModel.Username;
+                return View(vm);
+            }
+
+        }
+
+        private async Task RaiseNewUserCreatedInIdentityEvent(RegisterInputModel registerModel)
+        {
+            var newUser = new NewUserCreatedInIdentityEvent()
+            {
+                Email = registerModel.Email,
+                FirstName = registerModel.Username,
+                LastName = registerModel.Username,
+                Gender = registerModel.Gender,
+
+
+            };
+            await _busPublisher.PublishAsync<NewUserCreatedInIdentityEvent>("NewUserCreatedInIdentity", newUser);
         }
     }
 }
