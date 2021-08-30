@@ -8,6 +8,6 @@ namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
 {
     public class AddUserCommandResponse
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }
