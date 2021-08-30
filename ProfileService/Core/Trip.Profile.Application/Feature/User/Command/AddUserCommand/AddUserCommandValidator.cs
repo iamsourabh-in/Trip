@@ -1,9 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
 {
@@ -12,6 +7,10 @@ namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
         public AddUserCommandValidator()
         {
             RuleFor(request => request).NotNull().NotEmpty().WithMessage("Invalid Request");
+
+            RuleFor(request => request.UserName).NotNull().NotEmpty().WithMessage("Invalid UserName");
+
+            RuleFor(request => request.Email).NotNull().NotEmpty().WithMessage("Invalid Email");
         }
     }
 }

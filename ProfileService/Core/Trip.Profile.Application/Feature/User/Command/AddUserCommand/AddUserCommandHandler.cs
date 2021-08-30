@@ -3,7 +3,6 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Trip.Domain.Common.Messaging;
-using Trip.Domain.Common.Messaging.Profile;
 using Trip.Profile.Application.Contracts.Persistance;
 
 namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
@@ -22,7 +21,7 @@ namespace Trip.Profile.Application.Feature.User.Command.AddUserCommand
         }
         public async Task<AddUserCommandResponse> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<Trip.Profile.Domain.Entities.User>(request);
+            var user = _mapper.Map<Domain.Entities.User>(request);
             await _userWriterRepository.SaveAsync(user);
             return new AddUserCommandResponse() { Id = user.Id };
         }

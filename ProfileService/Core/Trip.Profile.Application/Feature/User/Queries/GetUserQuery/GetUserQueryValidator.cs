@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace Trip.Profile.Application.Feature.User.Queries.GetUserQuery
 {
-    public class GetUserQueryValidator
+    public class GetUserQueryValidator : AbstractValidator<GetUserQuery>
     {
-
+        public GetUserQueryValidator()
+        {
+            RuleFor(request => request).NotNull().NotEmpty().WithMessage("Invalid Request");
+        }
     }
 }

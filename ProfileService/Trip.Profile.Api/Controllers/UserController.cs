@@ -31,7 +31,7 @@ namespace Trip.Profile.Api.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await _mediator.Send(new GetUserQuery() { Id = id }));
         }
