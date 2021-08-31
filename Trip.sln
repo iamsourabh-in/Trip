@@ -46,25 +46,27 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Infrastructure.Common"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Profile.Messaging", "ProfileService\Infrastructure\Trip.Profile.Messaging\Trip.Profile.Messaging.csproj", "{9C3789B1-ADC0-41EB-90F4-15045EF144D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Domain.Common", "Common\Trip.Domain.Common\Trip.Domain.Common.csproj", "{EFCA3A4D-77AB-4703-880E-2412B313EA90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Domain.Common", "Common\Trip.Domain.Common\Trip.Domain.Common.csproj", "{EFCA3A4D-77AB-4703-880E-2412B313EA90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{DA943508-6A38-4131-BE0F-6D4BC18120A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A69A45EA-CBF5-43C0-87C6-A3D7E04E9054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Identity.Domain", "IdentityServer\Core\Trip.Identity.Domain\Trip.Identity.Domain.csproj", "{DA66575A-E74E-4793-BE01-7EF2756E9681}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Identity.Domain", "IdentityServer\Core\Trip.Identity.Domain\Trip.Identity.Domain.csproj", "{DA66575A-E74E-4793-BE01-7EF2756E9681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Identity.Messaging", "IdentityServer\Infrastructure\Trip.Identity.Messaging\Trip.Identity.Messaging.csproj", "{D496982A-4152-45B8-8092-3D48EB359D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Identity.Messaging", "IdentityServer\Infrastructure\Trip.Identity.Messaging\Trip.Identity.Messaging.csproj", "{D496982A-4152-45B8-8092-3D48EB359D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Identity.Application", "IdentityServer\Core\Trip.Identity.Application\Trip.Identity.Application.csproj", "{8A18E4CB-7020-48CC-876D-789F70AD2FEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Identity.Application", "IdentityServer\Core\Trip.Identity.Application\Trip.Identity.Application.csproj", "{8A18E4CB-7020-48CC-876D-789F70AD2FEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Creator.Domain", "CreatorService\Core\Trip.Creator.Domain\Trip.Creator.Domain.csproj", "{E46A8F5F-15D1-4409-924C-51ACC3AE1341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Creator.Domain", "CreatorService\Core\Trip.Creator.Domain\Trip.Creator.Domain.csproj", "{E46A8F5F-15D1-4409-924C-51ACC3AE1341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Creator.Application", "CreatorService\Core\Trip.Creator.Application\Trip.Creator.Application.csproj", "{D46AAEE8-2E74-4D22-B36E-D61AE86F9B2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Creator.Application", "CreatorService\Core\Trip.Creator.Application\Trip.Creator.Application.csproj", "{D46AAEE8-2E74-4D22-B36E-D61AE86F9B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Creator.Persistence", "CreatorService\Infrastructure\Trip.Creator.Persistence\Trip.Creator.Persistence.csproj", "{A7B3A11C-0B1C-44A2-852C-3416E08DA164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Creator.Persistence", "CreatorService\Infrastructure\Trip.Creator.Persistence\Trip.Creator.Persistence.csproj", "{A7B3A11C-0B1C-44A2-852C-3416E08DA164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Creator.Messaging", "CreatorService\Infrastructure\Trip.Creator.Messaging\Trip.Creator.Messaging.csproj", "{49E7CB0D-D494-4438-99F4-9376A6F1B30E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Creator.Messaging", "CreatorService\Infrastructure\Trip.Creator.Messaging\Trip.Creator.Messaging.csproj", "{49E7CB0D-D494-4438-99F4-9376A6F1B30E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Api.Common", "Common\Trip.Api.Common\Trip.Api.Common.csproj", "{8F231D56-CA11-4AEC-8EE7-C730FD165235}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,6 +146,10 @@ Global
 		{49E7CB0D-D494-4438-99F4-9376A6F1B30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49E7CB0D-D494-4438-99F4-9376A6F1B30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49E7CB0D-D494-4438-99F4-9376A6F1B30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F231D56-CA11-4AEC-8EE7-C730FD165235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F231D56-CA11-4AEC-8EE7-C730FD165235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F231D56-CA11-4AEC-8EE7-C730FD165235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F231D56-CA11-4AEC-8EE7-C730FD165235}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -173,6 +179,7 @@ Global
 		{D46AAEE8-2E74-4D22-B36E-D61AE86F9B2B} = {1FE29296-3305-4CD7-B549-D5FBE24785F5}
 		{A7B3A11C-0B1C-44A2-852C-3416E08DA164} = {9C87C267-DED4-48CA-AACD-A12000146682}
 		{49E7CB0D-D494-4438-99F4-9376A6F1B30E} = {9C87C267-DED4-48CA-AACD-A12000146682}
+		{8F231D56-CA11-4AEC-8EE7-C730FD165235} = {86D7E192-98AA-4711-8866-8AACA8277E50}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68F2BE62-8316-4373-849B-9A019F3CF5E6}
