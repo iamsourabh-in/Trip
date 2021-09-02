@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Profile.Api.ExceptionHandling;
 using Trip.Profile.Application.Feature.User.Command.AddUserCommand;
 using Trip.Profile.Application.Feature.User.Queries.GetUserQuery;
 
@@ -26,6 +27,7 @@ namespace Trip.Profile.Api.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            throw new TripProfileApiException("Wah wah Exception");
             return new string[] { "value1", "value2" };
         }
 

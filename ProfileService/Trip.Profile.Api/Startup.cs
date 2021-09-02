@@ -10,12 +10,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Trip.Api.Common.ExceptionHandling;
+using Trip.Api.Common.ExceptionHandling.Abstractions;
+using Trip.Api.Common.ExceptionHandling.Models;
 using Trip.Api.Common.HealthChecks;
 using Trip.Domain.Common.Messaging.Identity;
 using Trip.Infrastructure.Common.RabbitMQ;
+using Trip.Profile.Api.ExceptionHandling;
 using Trip.Profile.Application.Ioc;
 using Trip.Profile.Messaging.Ioc;
 using Trip.Profile.Persistance.Base;
@@ -68,6 +73,8 @@ namespace Trip.Profile.Api
             /////////////////////////////////////////
             services.RegisterMessagingService(Configuration);
 
+            services.AddSingleton<IErrorHandlingService,ErrorHandlingService>();
+
             services.AddControllers();
 
             //////////////////////////////////////////
@@ -92,6 +99,7 @@ namespace Trip.Profile.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip.Profile.Api v1"));
             }
+            app.UseExceptionHandling();
 
             SubscribeEvents(app);
 
@@ -111,6 +119,11 @@ namespace Trip.Profile.Api
                     ResponseWriter = WriteResponse
                 });
             });
+        }
+
+        private static ErrorResponse HandleException(Exception ex)
+        {
+            return new ErrorResponse() { Code = "Wah" };
         }
 
         private static void SubscribeEvents(IApplicationBuilder app)
