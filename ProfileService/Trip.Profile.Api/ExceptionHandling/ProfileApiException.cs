@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Trip.Profile.Api.ExceptionHandling
 {
-    public class TripProfileApiException : Exception
+    public class ProfileApiException : Exception
     {
 
-        public TripProfileApiException(string message):base(message)
+        public ProfileApiException(string message):base(message)
         {
 
         }

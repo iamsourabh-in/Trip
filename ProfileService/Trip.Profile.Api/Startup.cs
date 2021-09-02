@@ -1,3 +1,6 @@
+using EasyException.Abstractions;
+using EasyException.Middleware;
+using EasyException.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -14,9 +17,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Trip.Api.Common.ExceptionHandling;
-using Trip.Api.Common.ExceptionHandling.Abstractions;
-using Trip.Api.Common.ExceptionHandling.Models;
 using Trip.Api.Common.HealthChecks;
 using Trip.Domain.Common.Messaging.Identity;
 using Trip.Infrastructure.Common.RabbitMQ;
@@ -99,7 +99,7 @@ namespace Trip.Profile.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip.Profile.Api v1"));
             }
-            app.UseExceptionHandling();
+            app.UseEasyExceptionHandling();
 
             SubscribeEvents(app);
 

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EasyException.Abstractions;
+using EasyException.Models;
+using System;
 using System.Threading.Tasks;
-using Trip.Api.Common.ExceptionHandling.Abstractions;
-using Trip.Api.Common.ExceptionHandling.Models;
 using Trip.Profile.Application.Exceptions;
 using Trip.Profile.Domain.Exceptions;
 
@@ -13,7 +13,7 @@ namespace Trip.Profile.Api.ExceptionHandling
         {
             switch (exception)
             {
-                case TripProfileApiException ex:
+                case ProfileApiException ex:
                     return Task.FromResult<ErrorResponse>(new ErrorResponse() { Code = "ApiError", Message = exception.Message });
 
                 case ProfileDomainException ex:
@@ -26,5 +26,6 @@ namespace Trip.Profile.Api.ExceptionHandling
                     return Task.FromResult<ErrorResponse>(new ErrorResponse() { Code = "InternalError", Message = exception.Message });
             }
         }
+
     }
 }
