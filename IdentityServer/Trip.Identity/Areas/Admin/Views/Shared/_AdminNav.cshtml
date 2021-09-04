@@ -1,0 +1,31 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!-- Sidebar -->
+<nav id="sidebar">
+	<div class="sidebar-header">
+		<h3>Identity 4 Admin UI</h3>
+	</div>
+
+	<ul class="list-unstyled components">
+		<p> @DateTime.Now.ToLongDateString() </p>
+		<li>
+			<a asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
+		</li>
+		<li>
+			<a asp-action="Index" asp-controller="Users" asp-area="Admin">Users</a>
+		</li>
+		<li>
+			<a asp-action="Index" asp-controller="Clients" asp-area="Admin">Clients</a>
+		</li>
+		<li>
+			<a asp-action="Index" asp-controller="Resources" asp-area="Admin">Resources</a>
+		</li>
+		<li>
+			<a asp-action="Index" asp-controller="Scopes" asp-area="Admin">Scopes</a>
+		</li>
+	</ul>
+</nav>
+
+

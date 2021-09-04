@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using IdentityServer4.EntityFramework.DbContexts;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Identity.Areas.Admin.Models;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
@@ -13,23 +16,31 @@ namespace Trip.Identity.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _appDbContext;
+        private readonly ConfigurationDbContext _configurationDbContext;
+        private readonly IMapper _mapper;
 
-        public UsersController(SignInManager<ApplicationUser> signInManager)
+
+        public UsersController(IMapper mapper, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
         {
+            _mapper = mapper;
             _signInManager = signInManager;
+            _appDbContext = dbContext;
+            _configurationDbContext = configurationDbContext;
         }
 
         // GET: UsersController
         public ActionResult Index()
         {
-            TempData["Users"] = _signInManager.UserManager.Users.Select(u => u).ToList();
-            return View();
+
+            var users = _mapper.Map<List<UserViewModel>>(_signInManager.UserManager.Users);
+            return View(users);
         }
 
         // GET: UsersController/Details/5
         public ActionResult Details(string id)
         {
-            var user  = _signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id);
+            var user = _mapper.Map<UserViewModel>(_signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id));
             return View(user);
         }
 
@@ -56,18 +67,25 @@ namespace Trip.Identity.Areas.Admin.Controllers
 
         // GET: UsersController/Edit/5
         public ActionResult Edit(string id)
-        { 
-            var user = _signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id);
+        {
+            var user = _mapper.Map<UserViewModel>(_signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id));
             return View(user);
         }
 
         // POST: UsersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(string id, IFormCollection collection)
         {
             try
             {
+                var user = _signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id);
+                user.FirstName = collection["FirstName"];
+                user.LastName = collection["LastName"];
+                user.Email = collection["Email"];
+                user.PhoneNumber = collection["PhoneNumber"];
+                _signInManager.UserManager.UpdateAsync(user);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

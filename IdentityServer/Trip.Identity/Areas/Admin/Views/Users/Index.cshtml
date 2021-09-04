@@ -1,4 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@model List<UserViewModel>
+
+@using Microsoft.AspNetCore.Identity
+@using Trip.Identity.Areas.Admin.Models
 @using Trip.Identity.Persistence.Data
 
 @{
@@ -12,16 +15,20 @@
 		<tr>
 			<th scope="col">#</th>
 			<th scope="col">Username</th>
+			<th scope="col">Firstname</th>
+			<th scope="col">Lastname</th>
 			<th scope="col">Email</th>
 			<th scope="col">Phone</th>
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var user in (List<ApplicationUser>)TempData["Users"])
+		@foreach (var user in Model)
 		{
 			<tr>
 				<td>@user.Id</td>
 				<th scope="row">@user.UserName</th>
+				<td>@user.FirstName</td>
+				<td>@user.LastName </td>
 				<td>@user.Email</td>
 				<td>@user.PhoneNumber </td>
 				<td><a asp-action="Edit" asp-controller="Users" asp-route-id=@user.Id >Edit</a> </td>

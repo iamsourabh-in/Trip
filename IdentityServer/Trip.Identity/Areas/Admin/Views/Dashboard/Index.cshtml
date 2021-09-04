@@ -1,43 +1,51 @@
 ﻿@model Trip.Identity.Areas.Admin.Models.GetDashboardVM
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 
 
 <div>
-    <h4>Identity Dashboard</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Users)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Users)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Clients)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Clients)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Roles)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Roles)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Resources)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Resources)
-        </dd>
-    </dl>
+	<h4>Identity Dashboard</h4>
+	<hr />
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Users &nbsp;	<span class="badge badge-success">@Html.DisplayFor(model => model.Users)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Clients: &nbsp; 	<span class="badge badge-success">@Html.DisplayFor(model => model.Clients)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Roles &nbsp; 	<span class="badge badge-success">@Html.DisplayFor(model => model.Roles)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.Resources)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-@*<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>*@

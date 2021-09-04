@@ -54,6 +54,8 @@ namespace Trip.Identity
                 })
                 .AddDeveloperSigningCredential();
 
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             //////////////////////////////////////////
             /// Register Messaging Services
             /////////////////////////////////////////

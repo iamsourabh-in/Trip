@@ -11,20 +11,20 @@ namespace Trip.Identity.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext _dbContext;
         private readonly ConfigurationDbContext configurationDbContext;
 
         public DashboardController(SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
         {
             _signInManager = signInManager;
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
             this.configurationDbContext = configurationDbContext;
         }
         public IActionResult Index()
         {
             var DashboardVM = new GetDashboardVM();
             DashboardVM.Users = _signInManager.UserManager.Users.Count();
-            DashboardVM.Roles = dbContext.Roles.Count();
+            DashboardVM.Roles = _dbContext.Roles.Count();
             DashboardVM.Clients = configurationDbContext.Clients.Count();
             DashboardVM.Resources = configurationDbContext.ApiResources.Count();
             return View(DashboardVM);

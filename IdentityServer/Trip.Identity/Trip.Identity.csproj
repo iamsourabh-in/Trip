@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="IdentityServer4" Version="4.1.2" />
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.1.2" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="4.1.2" />
@@ -25,6 +27,10 @@
     <ProjectReference Include="..\Core\Trip.Identity.Application\Trip.Identity.Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Trip.Identity.Messaging\Trip.Identity.Messaging.csproj" />
     <ProjectReference Include="..\Infrastructure\Trip.Identity.Persistence\Trip.Identity.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\Clients\" />
   </ItemGroup>
 
 </Project>
