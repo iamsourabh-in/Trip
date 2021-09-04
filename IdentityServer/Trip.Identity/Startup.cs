@@ -6,10 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
-using Trip.Domain.Common.Messaging.Identity;
-using Trip.Identity.Data;
 using Trip.Identity.Messaging.Ioc;
-using Trip.Infrastructure.Common.RabbitMQ;
+using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity
 {
@@ -30,23 +28,22 @@ namespace Trip.Identity
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             services.AddDbContext<ApplicationDbContext>(options =>
-             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"), opt => opt.MigrationsAssembly(migrationAssembly)));
 
             ////////////////////////////////////////////////////
             /// Make the Idenitty Server use Identity User
             ///////////////////////////////////////////////////
-            services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             //////////////////////////////////////////
-            /// Register Idenitty Server
-            /////////////////////////////////////////
+            /// Register Identity Server
+            //////////////////////////////////////////
             services.AddIdentityServer()
                   //.AddInMemoryClients(Config.Clients)
                   //.AddInMemoryIdentityResources(Config.IdentityResources)
                   //.AddInMemoryApiResources(Config.ApiResources)
                   //.AddInMemoryApiScopes(Config.ApiScopes)
-                  .AddAspNetIdentity<IdentityUser>()
+                  .AddAspNetIdentity<ApplicationUser>()
                 .AddConfigurationStore(options =>
                 {
                     options.ConfigureDbContext = builder => builder.UseSqlite(connectionString, opt => opt.MigrationsAssembly(migrationAssembly));

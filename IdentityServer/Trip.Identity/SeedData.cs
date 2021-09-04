@@ -1,8 +1,5 @@
 ﻿
 
-using System;
-using System.Linq;
-using System.Security.Claims;
 using IdentityModel;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Mappers;
@@ -11,7 +8,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
-using Trip.Identity.Data;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity
 {

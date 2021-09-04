@@ -1,23 +1,20 @@
 ﻿using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Trip.Identity.Areas.Admin.Models;
-using Trip.Identity.Data;
+using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class DashboardController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext dbContext;
         private readonly ConfigurationDbContext configurationDbContext;
 
-        public DashboardController(SignInManager<IdentityUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
+        public DashboardController(SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
         {
             _signInManager = signInManager;
             this.dbContext = dbContext;

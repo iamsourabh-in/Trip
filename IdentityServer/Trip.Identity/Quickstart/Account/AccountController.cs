@@ -20,6 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Trip.Domain.Common.Messaging;
 using Trip.Domain.Common.Messaging.Identity;
+using Trip.Identity.Persistence.Data;
 using Trip.Identity.Quickstart.Account;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -37,7 +38,7 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly IClientStore _clientStore;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IEventService _events;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IBusPublisher _busPublisher;
 
         public AccountController(
@@ -45,7 +46,7 @@ namespace IdentityServerHost.Quickstart.UI
             IClientStore clientStore,
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
-            SignInManager<IdentityUser> signInManager,
+            SignInManager<ApplicationUser> signInManager,
             IBusPublisher busPublisher)
         {
             _interaction = interaction;
@@ -392,7 +393,7 @@ namespace IdentityServerHost.Quickstart.UI
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser();
+                var user = new ApplicationUser();
                 user.Email = registerModel.Email;
                 user.UserName = registerModel.Username;
                 user.NormalizedEmail = registerModel.Email.ToLower();

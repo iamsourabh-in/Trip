@@ -5,15 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class UsersController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public UsersController(SignInManager<IdentityUser> signInManager)
+        public UsersController(SignInManager<ApplicationUser> signInManager)
         {
             _signInManager = signInManager;
         }
@@ -55,7 +56,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
 
         // GET: UsersController/Edit/5
         public ActionResult Edit(string id)
-        {
+        { 
             var user = _signInManager.UserManager.Users.FirstOrDefault(u => u.Id == id);
             return View(user);
         }

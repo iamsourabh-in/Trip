@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Trip.Identity.Persistence.Data
 
 @{
 	ViewData["Title"] = "Index";
@@ -16,7 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var user in (List<IdentityUser>)TempData["Users"])
+		@foreach (var user in (List<ApplicationUser>)TempData["Users"])
 		{
 			<tr>
 				<td>@user.Id</td>

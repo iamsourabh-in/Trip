@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Trip.Identity.Migrations
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20210828160832_InitialIdentityServerMigration")]
-    partial class InitialIdentityServerMigration
+    [Migration("20210904122926_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
