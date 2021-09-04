@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Username</th>
+			<th scope="col">Email</th>
+			<th scope="col">Phone</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var user in (List<IdentityUser>)TempData["Users"])
+		{
+			<tr>
+				<td>@user.Id</td>
+				<th scope="row">@user.UserName</th>
+				<td>@user.Email</td>
+				<td>@user.PhoneNumber </td>
+				<td><a asp-action="Edit" asp-controller="Users" asp-route-id=@user.Id >Edit</a> </td>
+				<td><a asp-action="Delete" asp-controller="Users" asp-route-id=@user.Id>Delete</a> </td>
+			</tr>
+		}
+	</tbody>
+</table>

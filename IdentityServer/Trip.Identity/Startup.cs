@@ -35,7 +35,7 @@ namespace Trip.Identity
             ////////////////////////////////////////////////////
             /// Make the Idenitty Server use Identity User
             ///////////////////////////////////////////////////
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //////////////////////////////////////////
@@ -63,7 +63,7 @@ namespace Trip.Identity
             services.RegisterMessagingService(Configuration);
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,6 +79,10 @@ namespace Trip.Identity
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                          name: "Admin",
+                          pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
+
                 endpoints.MapDefaultControllerRoute();
             });
         }
