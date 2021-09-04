@@ -13,19 +13,21 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th scope="col">#</th>
+			@*<th scope="col">#</th>*@
 			<th scope="col">Username</th>
 			<th scope="col">Firstname</th>
 			<th scope="col">Lastname</th>
 			<th scope="col">Email</th>
 			<th scope="col">Phone</th>
+			<th scope="col">Edit</th>
+			<th scope="col">Delete</th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach (var user in Model)
 		{
 			<tr>
-				<td>@user.Id</td>
+				@*<td>@user.Id</td>*@
 				<th scope="row">@user.UserName</th>
 				<td>@user.FirstName</td>
 				<td>@user.LastName </td>

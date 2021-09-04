@@ -11,7 +11,7 @@
 	<h4>Identity Dashboard</h4>
 	<hr />
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-sm-3 p-2">
 			<div class="card">
 				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
 				<div class="card-body">
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 p-2">
 			<div class="card">
 				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
 				<div class="card-body">
@@ -29,7 +29,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 p-2">
 			<div class="card">
 				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
 				<div class="card-body">
@@ -38,11 +38,29 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 p-2">
 			<div class="card">
 				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
 				<div class="card-body">
-					<h5 class="center card-title">Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.Resources)</span></h5>
+					<h5 class="center card-title">Identity Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.IdentityResources)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3 p-2">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Api Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.ApiResources)</span></h5>
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3 p-2">
+			<div class="card">
+				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="center card-title">Api Scopes &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.ApiScopes)</span></h5>
 					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
 				</div>
 			</div>

@@ -26,7 +26,9 @@ namespace Trip.Identity.Areas.Admin.Controllers
             DashboardVM.Users = _signInManager.UserManager.Users.Count();
             DashboardVM.Roles = _dbContext.Roles.Count();
             DashboardVM.Clients = configurationDbContext.Clients.Count();
-            DashboardVM.Resources = configurationDbContext.ApiResources.Count();
+            DashboardVM.IdentityResources = configurationDbContext.IdentityResources.Count();
+            DashboardVM.ApiResources = configurationDbContext.ApiResources.Count();
+            DashboardVM.ApiScopes = configurationDbContext.ApiScopes.Count();
             return View(DashboardVM);
         }
     }
