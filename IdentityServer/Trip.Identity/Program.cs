@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using App.Metrics.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +12,8 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
-
+using App.Metrics.Formatters;
+using App.Metrics.Formatters.Prometheus;
 
 namespace Trip.Identity
 {
@@ -54,9 +56,18 @@ namespace Trip.Identity
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            .UseMetricsWebTracking().UseMetrics(option =>
+            {
+                option.EndpointOptions = endpointOption =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    endpointOption.MetricsTextEndpointOutputFormatter = new MetricsPrometheusTextOutputFormatter();
+                    endpointOption.MetricsEndpointOutputFormatter = new MetricsPrometheusProtobufOutputFormatter();
+                    endpointOption.EnvironmentInfoEndpointEnabled = false;
+                };
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }
