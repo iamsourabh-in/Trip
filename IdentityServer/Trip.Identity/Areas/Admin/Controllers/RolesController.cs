@@ -39,7 +39,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
         // GET: RolesController/Details/5
         public async Task<ActionResult> Details(string id)
         {
-            var roles = _mapper.Map<List<RoleListViewModel>>(await _roleManager.FindByIdAsync(id));
+            var roles = _mapper.Map<RoleListViewModel>(await _roleManager.FindByIdAsync(id));
             return View(roles);
         }
 
@@ -72,7 +72,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
         // GET: RolesController/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
-            var roles = _mapper.Map<List<RoleListViewModel>>(await _roleManager.FindByIdAsync(id));
+            var roles = _mapper.Map<RoleListViewModel>(await _roleManager.FindByIdAsync(id));
             return View(roles);
         }
 
