@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.DbContexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
         {
             var scope = _mapper.Map<ApiScopeListViewModel>(_configurationDbContext.ApiScopes.FirstOrDefault(api => api.Id == id));
             return View(scope);
+            
         }
 
         // GET: ApiScopesController/Create

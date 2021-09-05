@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
+using Microsoft.AspNetCore.Identity;
 using Trip.Identity.Areas.Admin.Models;
 using Trip.Identity.Areas.Admin.Models.ApiResources;
 using Trip.Identity.Areas.Admin.Models.ApiScopes;
 using Trip.Identity.Areas.Admin.Models.IdentityResource;
+using Trip.Identity.Areas.Admin.Models.Roles;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Mappings
@@ -17,8 +19,9 @@ namespace Trip.Identity.Mappings
             CreateMap<IdentityResourceListViewModel, IdentityResource>().ReverseMap();
             CreateMap<ApiResourceListViewModel, ApiResource>().ReverseMap();
             CreateMap<ApiScopeListViewModel, ApiScope>().ReverseMap();
-            
+            CreateMap<RoleListViewModel, IdentityRole>().ReverseMap();
+
         }
-          
+
     }
 }

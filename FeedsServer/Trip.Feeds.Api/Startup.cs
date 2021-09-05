@@ -33,6 +33,7 @@ namespace Trip.Feeds.Api
                     options.RequireHttpsMetadata = false;
                 });
 
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
