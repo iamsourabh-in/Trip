@@ -11,58 +11,49 @@
 	<h4>Identity Dashboard</h4>
 	<hr />
 	<div class="row">
-		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Users &nbsp;	<span class="badge badge-success">@Html.DisplayFor(model => model.Users)</span></h5>
-					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
+		<div class="col-sm-4">
+			<div class="card-counter primary">
+				<i class="fa fa-users"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.Users)</span>
+				<span class="count-name">
+					<a asp-action="Index" asp-controller="Users" asp-area="Admin">Users</a>
+				</span>
 			</div>
 		</div>
-		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Clients: &nbsp; 	<span class="badge badge-success">@Html.DisplayFor(model => model.Clients)</span></h5>
-					<a asp-action="Index" asp-controller="Clients" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
+		<div class="col-sm-4">
+			<div class="card-counter danger">
+				<i class="fa fa-ticket"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.Clients)</span>
+				<span class="count-name"><a asp-action="Index" asp-controller="Clients" asp-area="Admin">Clients</a></span>
 			</div>
 		</div>
-@*		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Roles &nbsp; 	<span class="badge badge-success">@Html.DisplayFor(model => model.Roles)</span></h5>
-					<a asp-action="Index" asp-controller="Users" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
-			</div>
-		</div>*@
-		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Identity Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.IdentityResources)</span></h5>
-					<a asp-action="Index" asp-controller="IdentityResources" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
+		<div class="col-sm-4">
+			<div class="card-counter success">
+				<i class="fa fa-database"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.Roles)</span>
+				<span class="count-name"><a asp-action="Index" asp-controller="Roles" asp-area="Admin">Roles</a></span>
 			</div>
 		</div>
-		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Api Resources &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.ApiResources)</span></h5>
-					<a asp-action="Index" asp-controller="ApiResources" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
+		<div class="col-sm-4">
+			<div class="card-counter info">
+				<i class="fa fa-code-fork"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.IdentityResources)</span>
+				<span class="count-name"><a asp-action="Index" asp-controller="IdentityResources" asp-area="Admin">Identity Resources</a></span>
 			</div>
 		</div>
-		<div class="col-sm-3 p-2">
-			<div class="card">
-				<img class="card-img-top" src="https://image.shutterstock.com/image-vector/vector-social-network-button-users-260nw-253724863.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="center card-title">Api Scopes &nbsp; <span class="badge badge-success">@Html.DisplayFor(model => model.ApiScopes)</span></h5>
-					<a asp-action="Index" asp-controller="ApiScopes" asp-area="Admin" class="btn btn-primary">View All</a>
-				</div>
+		<div class="col-sm-4">
+			<div class="card-counter info">
+				<i class="fa fa-code-fork"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.ApiResources)</span>
+				<span class="count-name"><a asp-action="Index" asp-controller="ApiResources" asp-area="Admin">Api Resources</a></span>
+			</div>
+
+		</div>
+		<div class="col-sm-4">
+			<div class="card-counter info">
+				<i class="fa fa-code-fork"></i>
+				<span class="count-numbers">@Html.DisplayFor(model => model.ApiScopes)</span>
+				<span class="count-name"><a asp-action="Index" asp-controller="ApiScopes" asp-area="Admin">Api Scopes</a></span>
 			</div>
 		</div>
 	</div>
