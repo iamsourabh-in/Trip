@@ -16,11 +16,14 @@
 		<li>
 			<a asp-action="Index" asp-controller="Users" asp-area="Admin">Users</a>
 		</li>
-		<li>
+		@*<li>
 			<a asp-action="Index" asp-controller="Roles" asp-area="Admin">Roles</a>
-		</li>
+		</li>*@
 		<li>
 			<a asp-action="Index" asp-controller="Clients" asp-area="Admin">Clients</a>
+		</li>
+		<li>
+			<a asp-action="Index" asp-controller="ApiScopes" asp-area="Admin">Api Scopes</a>
 		</li>
 		<li>
 			<a asp-action="Index" asp-controller="ApiResources" asp-area="Admin">Api Resources</a>
@@ -28,9 +31,7 @@
 		<li>
 			<a asp-action="Index" asp-controller="IdentityResources" asp-area="Admin">Identity Resources</a>
 		</li>
-		<li>
-			<a asp-action="Index" asp-controller="ApiScopes" asp-area="Admin">Scopes</a>
-		</li>
+		
 	</ul>
 </nav>
 

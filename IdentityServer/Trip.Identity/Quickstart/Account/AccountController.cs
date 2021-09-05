@@ -395,6 +395,8 @@ namespace IdentityServerHost.Quickstart.UI
             {
                 var user = new ApplicationUser();
                 user.Email = registerModel.Email;
+                user.FirstName = registerModel.FirstName;
+                user.LastName = registerModel.LastName;
                 user.UserName = registerModel.Username;
                 user.NormalizedEmail = registerModel.Email.ToLower();
                 user.EmailConfirmed = true;
@@ -402,8 +404,6 @@ namespace IdentityServerHost.Quickstart.UI
                 user.PhoneNumberConfirmed = true;
                 // find user by username
                 var result = await _signInManager.UserManager.CreateAsync(user, registerModel.ConfirmPassword);
-
-
 
                 if (result.Succeeded && !result.Errors.Any())
                     ViewData["message"] = "User added successfully";

@@ -34,8 +34,4 @@
     <ProjectReference Include="..\Infrastructure\Trip.Identity.Persistence\Trip.Identity.Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Models\Clients\" />
-  </ItemGroup>
-
 </Project>
