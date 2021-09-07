@@ -23,7 +23,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         private readonly RoleManager<ApplicationUser> _roleManager;
 
-        public AccountController(IMapper mapper, RoleManager<ApplicationUser> roleManager SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
+        public AccountController(IMapper mapper, RoleManager<ApplicationUser> roleManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
         {
             _mapper = mapper;
             this._roleManager = roleManager;
