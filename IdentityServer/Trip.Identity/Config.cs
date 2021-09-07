@@ -82,6 +82,10 @@ namespace Trip.Identity
           {
             new ApiScope("tripfeed.read"),
             new ApiScope("tripfeed.write"),
+            new ApiScope("tripcreator.read"),
+            new ApiScope("tripcreator.write"),
+            new ApiScope("tripprofile.read"),
+            new ApiScope("tripprofile.write"),
           };
         public static IEnumerable<ApiResource> ApiResources => new[]
         {
@@ -105,7 +109,7 @@ namespace Trip.Identity
                   AllowedGrantTypes = GrantTypes.ClientCredentials,
                   ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
 
-                  AllowedScopes = { "tripfeed.read", "tripfeed.write" }
+                  AllowedScopes = { "tripfeed.read", "tripfeed.write" , "tripcreator.read" , "tripcreator.write" , "tripprofile.read", "tripprofile.write" }
                 },
 
                 // interactive client using code flow + pkce
@@ -121,7 +125,7 @@ namespace Trip.Identity
                   PostLogoutRedirectUris = {"https://localhost:5444/signout-callback-oidc"},
 
                   AllowOfflineAccess = true,
-                  AllowedScopes = {"openid", "profile", "tripfeed.read"},
+                  AllowedScopes = {"openid", "profile", "tripfeed.read", "tripfeed.write" , "tripcreator.read" , "tripcreator.write" , "tripprofile.read", "tripprofile.write" },
                   RequirePkce = true,
                   RequireConsent = true,
                   AllowPlainTextPkce = false
