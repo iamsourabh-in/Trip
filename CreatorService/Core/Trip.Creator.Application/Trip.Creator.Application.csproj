@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Trip.Creator.Domain\Trip.Creator.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

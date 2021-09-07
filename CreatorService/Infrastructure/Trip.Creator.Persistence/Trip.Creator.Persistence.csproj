@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Trip.Creator.Application\Trip.Creator.Application.csproj" />
     <ProjectReference Include="..\..\Core\Trip.Creator.Domain\Trip.Creator.Domain.csproj" />
   </ItemGroup>
 

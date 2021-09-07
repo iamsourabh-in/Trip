@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using Trip.Api.Common.HealthChecks;
 using Trip.Creator.Api.ExceptionHandling;
 using Trip.Creator.Persistence.Base;
+using Trip.Creator.Persistence.Ioc;
 
 namespace Trip.Creator.Api
 {
@@ -53,10 +54,10 @@ namespace Trip.Creator.Api
             services.AddDbContext<CreatorReaderDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileReader"), opt => opt.MigrationsAssembly(migrationAssembly)));
             services.AddDbContext<CreatorWriterDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileWriter"), opt => opt.MigrationsAssembly(migrationAssembly)));
 
-            ////////////////////////////////////////////
-            ///// Register Persistance Services
-            ///////////////////////////////////////////
-            //services.RegisterPersistanceServices();
+            //////////////////////////////////////////
+            /// Register Persistance Services
+            /////////////////////////////////////////
+            services.RegisterPersistanceServices();
 
             ////////////////////////////////////////////
             ///// Register Application Services
