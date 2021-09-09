@@ -22,9 +22,9 @@ namespace Trip.Identity.Areas.Admin.Controllers
         private readonly ApplicationDbContext _appDbContext;
         private readonly ConfigurationDbContext _configurationDbContext;
         private readonly IMapper _mapper;
-        private readonly RoleManager<ApplicationUser> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(IMapper mapper, RoleManager<ApplicationUser> roleManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
+        public AccountController(IMapper mapper, RoleManager<IdentityRole> roleManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext dbContext, ConfigurationDbContext configurationDbContext)
         {
             _mapper = mapper;
             this._roleManager = roleManager;
@@ -53,10 +53,12 @@ namespace Trip.Identity.Areas.Admin.Controllers
                 // find user by username
                 var user = await _signInManager.UserManager.FindByNameAsync(model.Username);
 
+              
+
                 // validate username/password against in-memory store
                 if (user != null && (await _signInManager.CheckPasswordSignInAsync(user, model.Password, true)) == Microsoft.AspNetCore.Identity.SignInResult.Success)
                 {
-                    var roles = _roleManager.GetClaimsAsync(user);
+                    var roles = await _signInManager.UserManager.GetRolesAsync(user);
                     // await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName, clientId: context?.Client.ClientId));
 
                     // only set explicit expiration here if user chooses "remember me". 
