@@ -14,6 +14,7 @@ using Trip.Identity.Persistence.Data;
 namespace Trip.Identity.Areas.Admin.Controllers
 {
     [AllowAnonymous]
+    [Area("Admin")]
     public class AccountController : Controller
     {
 
