@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using Trip.Identity.Persistence.Data;
 namespace Trip.Identity.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class ClientsController : Controller
     {
         private readonly IMapper _mapper;
@@ -30,15 +32,15 @@ namespace Trip.Identity.Areas.Admin.Controllers
         // GET: ClientsController
         public ActionResult Index()
         {
-             var clients = _mapper.Map<List<ClientViewModel>>(configurationDbContext.Clients.ToList());
-            
+            var clients = _mapper.Map<List<ClientViewModel>>(configurationDbContext.Clients.ToList());
+
             return View(clients);
         }
 
         // GET: ClientsController/Details/5
         public ActionResult Details(int id)
         {
-            var client = _mapper.Map<ClientViewModel>(configurationDbContext.Clients.FirstOrDefault(c=>c.Id == id));
+            var client = _mapper.Map<ClientViewModel>(configurationDbContext.Clients.FirstOrDefault(c => c.Id == id));
             return View(client);
         }
 

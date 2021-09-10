@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Trip.Identity.Areas.Admin.Models.UserRoles.UserRolesViewModel>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+	var userId = ViewBag.UserId;
+}
+
+<h1>Manage User Roles</h1>
+
+<form method="post">
+
+	@foreach (var item in Model)
+	{
+		<div class="form-check m-2">
+			<input type="hidden" asp-for="@item.RoleId" />
+			<input type="hidden" asp-for="@item.RoleName" />
+			<input class="form-check-input" asp-for="@item.IsSelected" />
+			<label class="form-check-label" type="hidden" asp-for="@item.IsSelected">@item.RoleName</label>
+		</div>
+	}
+	<div class="m-2">
+	<input type="submit" value="Update" class="btn btn-primary" style="width:auto" />
+	<a asp-action="Edit" asp-controller="Users" asp-route-id="@userId" class="btn btn-danger" style="width:auto">Cancel</a>
+	</div>
+</form>

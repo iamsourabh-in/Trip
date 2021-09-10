@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -54,6 +56,13 @@ namespace Trip.Identity
                 })
                 .AddDeveloperSigningCredential();
 
+            services.AddAuthentication("MyCookie")
+             .AddCookie("MyCookie", options =>
+             {
+                 options.AccessDeniedPath = "/account/denied";
+                 options.LoginPath = "/account/login";
+             });
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             //////////////////////////////////////////
@@ -75,7 +84,9 @@ namespace Trip.Identity
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();
+             app.UseAuthentication();  
             app.UseAuthorization();
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

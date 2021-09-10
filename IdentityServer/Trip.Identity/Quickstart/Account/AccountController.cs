@@ -16,7 +16,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Trip.Domain.Common.Messaging;
 using Trip.Domain.Common.Messaging.Identity;
@@ -40,6 +42,7 @@ namespace IdentityServerHost.Quickstart.UI
         private readonly IEventService _events;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IBusPublisher _busPublisher;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(
             IIdentityServerInteractionService interaction,
@@ -47,7 +50,7 @@ namespace IdentityServerHost.Quickstart.UI
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events,
             SignInManager<ApplicationUser> signInManager,
-            IBusPublisher busPublisher)
+            IBusPublisher busPublisher, RoleManager<IdentityRole> roleManager)
         {
             _interaction = interaction;
             _clientStore = clientStore;
@@ -55,6 +58,7 @@ namespace IdentityServerHost.Quickstart.UI
             _events = events;
             _signInManager = signInManager;
             _busPublisher = busPublisher;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -134,10 +138,14 @@ namespace IdentityServerHost.Quickstart.UI
                         };
                     };
 
+                    var roles = _signInManager.UserManager.GetRolesAsync(user);
+                    var claims = _signInManager.UserManager.GetClaimsAsync(user);
+
                     // issue authentication cookie with subject ID and username
                     var isuser = new IdentityServerUser(user.Id)
                     {
-                        DisplayName = user.UserName
+                        DisplayName = user.UserName,
+                        AdditionalClaims = new List<Claim>() { new Claim("Roles", "Admin"), new Claim("Roles", "User") }
                     };
 
                     await HttpContext.SignInAsync(isuser, props);
