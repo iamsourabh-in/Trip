@@ -137,16 +137,23 @@ namespace IdentityServerHost.Quickstart.UI
                             ExpiresUtc = DateTimeOffset.UtcNow.Add(AccountOptions.RememberMeLoginDuration)
                         };
                     };
-
-                    var roles = _signInManager.UserManager.GetRolesAsync(user);
-                    var claims = _signInManager.UserManager.GetClaimsAsync(user);
-
                     // issue authentication cookie with subject ID and username
                     var isuser = new IdentityServerUser(user.Id)
                     {
                         DisplayName = user.UserName,
-                        AdditionalClaims = new List<Claim>() { new Claim("Role", "Admin"), new Claim("Roles", "User") }
+                        AdditionalClaims = new List<Claim>() { new Claim("Roles", "User") }
                     };
+                    var roles = await _signInManager.UserManager.GetRolesAsync(user);
+                    var claims = await _signInManager.UserManager.GetClaimsAsync(user);
+
+                    foreach (var role in roles)
+                    {
+                        isuser.AdditionalClaims.Add(new Claim(JwtClaimTypes.Role, role));
+                    }
+                    foreach (var claim in claims)
+                    {
+                        isuser.AdditionalClaims.Add(new Claim(claim.Type, claim.Value));
+                    }
 
                     await HttpContext.SignInAsync(isuser, props);
 

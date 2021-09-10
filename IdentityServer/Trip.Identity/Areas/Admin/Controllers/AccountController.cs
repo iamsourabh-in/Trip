@@ -53,8 +53,6 @@ namespace Trip.Identity.Areas.Admin.Controllers
                 // find user by username
                 var user = await _signInManager.UserManager.FindByNameAsync(model.Username);
 
-              
-
                 // validate username/password against in-memory store
                 if (user != null && (await _signInManager.CheckPasswordSignInAsync(user, model.Password, true)) == Microsoft.AspNetCore.Identity.SignInResult.Success)
                 {
