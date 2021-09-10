@@ -6,10 +6,12 @@
  
 
 The  services are segregated as
-- Identity Service (Identity Server 4)
-- Profile Service
-- Creator Service
-- Feeder Service
+- Identity Service (Identity Server 4) - 5000,5443
+- Profile Service - 6000,6443
+- Creator Service - 7000,7443
+- Feeder Service - 8000,8443
+
+- Tripper.UI - 1000,1443
 
 Additionally, 
 - The services use a Clean Architecture approach using CQRS

@@ -1,3 +1,4 @@
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 using Trip.Identity.Messaging.Ioc;
 using Trip.Identity.Persistence.Data;
@@ -25,6 +27,18 @@ namespace Trip.Identity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins("https://localhost:1443/", "http://localhost:1000/", "https://localhost:5443/")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials(); ;
+                });
+            });
+
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
@@ -68,6 +82,19 @@ namespace Trip.Identity
                      policy => policy.RequireRole("Admin"));
             });
 
+            //Idenitty Way of doing it Dynamically
+
+            //services.AddSingleton<ICorsPolicyService>((container) =>
+            //{
+            //	var logger = container.GetRequiredService<ILogger<DefaultCorsPolicyService>>();
+            //	return new DefaultCorsPolicyService(logger)
+            //	{
+            //		AllowedOrigins = { "https://localhost:1443/", "http://localhost:1000/" }
+            //	};
+            //});
+
+
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             //////////////////////////////////////////
@@ -90,12 +117,18 @@ namespace Trip.Identity
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials());
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();
-            app.UseAuthentication();  
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy(cookiePolicyOptions);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

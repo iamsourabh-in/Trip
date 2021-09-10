@@ -51,8 +51,8 @@ namespace Trip.Creator.Api
             /// Register Db Context
             /////////////////////////////////////////
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-            services.AddDbContext<CreatorReaderDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileReader"), opt => opt.MigrationsAssembly(migrationAssembly)));
-            services.AddDbContext<CreatorWriterDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("ProfileWriter"), opt => opt.MigrationsAssembly(migrationAssembly)));
+            services.AddDbContext<CreatorReaderDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("CreatorReader"), opt => opt.MigrationsAssembly(migrationAssembly)));
+            services.AddDbContext<CreatorWriterDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("CreatorWriter"), opt => opt.MigrationsAssembly(migrationAssembly)));
 
             //////////////////////////////////////////
             /// Register Persistance Services
