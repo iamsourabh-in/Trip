@@ -56,12 +56,17 @@ namespace Trip.Identity
                 })
                 .AddDeveloperSigningCredential();
 
-            services.AddAuthentication("MyCookie")
-             .AddCookie("MyCookie", options =>
+            services.AddAuthentication("MyCookieId")
+             .AddCookie("MyCookieId", options =>
              {
                  options.AccessDeniedPath = "/account/denied";
                  options.LoginPath = "/account/login";
              });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdministratorRole",
+                     policy => policy.RequireRole("Admin"));
+            });
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -77,6 +82,10 @@ namespace Trip.Identity
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -84,9 +93,9 @@ namespace Trip.Identity
             app.UseStaticFiles();
             app.UseRouting();
             app.UseIdentityServer();
-             app.UseAuthentication();  
+            app.UseAuthentication();  
             app.UseAuthorization();
-          
+            app.UseCookiePolicy(cookiePolicyOptions);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

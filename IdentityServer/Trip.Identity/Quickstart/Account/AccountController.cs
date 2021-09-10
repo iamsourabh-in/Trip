@@ -145,7 +145,7 @@ namespace IdentityServerHost.Quickstart.UI
                     var isuser = new IdentityServerUser(user.Id)
                     {
                         DisplayName = user.UserName,
-                        AdditionalClaims = new List<Claim>() { new Claim("Roles", "Admin"), new Claim("Roles", "User") }
+                        AdditionalClaims = new List<Claim>() { new Claim("Role", "Admin"), new Claim("Roles", "User") }
                     };
 
                     await HttpContext.SignInAsync(isuser, props);
@@ -222,7 +222,10 @@ namespace IdentityServerHost.Quickstart.UI
             {
                 // delete local authentication cookie
                 await HttpContext.SignOutAsync();
-
+                Response.Cookies.Delete("MyCookieId");
+                Response.Cookies.Delete(".AspNetCore.Identity.Application");
+                Response.Cookies.Delete("idserv.external");
+                Response.Cookies.Delete("idserv.session");
                 // raise the logout event
                 await _events.RaiseAsync(new UserLogoutSuccessEvent(User.GetSubjectId(), User.GetDisplayName()));
             }
