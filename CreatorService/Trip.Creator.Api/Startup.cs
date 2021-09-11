@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Trip.Api.Common.HealthChecks;
 using Trip.Creator.Api.ExceptionHandling;
+using Trip.Creator.Application.Ioc;
 using Trip.Creator.Persistence.Base;
 using Trip.Creator.Persistence.Ioc;
 
@@ -62,7 +63,7 @@ namespace Trip.Creator.Api
             ////////////////////////////////////////////
             ///// Register Application Services
             ///////////////////////////////////////////
-            //services.RegisterApplicationServices();
+            services.RegisterApplicationServices();
 
             ////////////////////////////////////////////
             ///// Register Messaging Services

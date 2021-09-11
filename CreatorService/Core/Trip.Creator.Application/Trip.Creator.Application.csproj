@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Trip.Application.Common\Trip.Application.Common.csproj" />
     <ProjectReference Include="..\Trip.Creator.Domain\Trip.Creator.Domain.csproj" />
   </ItemGroup>
 

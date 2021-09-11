@@ -17,7 +17,6 @@ namespace Trip.Creator.Domain.Entities
         [Required]
         public string ResourceMime { get; set; }
 
-        [Required]
         public string Tags { get; set; }
 
         [Required]

@@ -14,6 +14,8 @@ namespace Trip.Profile.Persistance.Base
     {
         public DbSet<User> Users { get; set; }
 
+        public DbSet<FriendRequest> FriendRequest { get; set; }
+
         public ProfileReaderDbContext(DbContextOptions<ProfileReaderDbContext> options) : base(options)
         {
 

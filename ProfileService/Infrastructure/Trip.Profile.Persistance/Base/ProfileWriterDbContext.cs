@@ -18,6 +18,8 @@ namespace Trip.Profile.Persistance.Base
                 
         }
         public DbSet<User> Blogs { get; set; }
+        public DbSet<FriendRequest> FriendRequest { get; set; }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseSqlite("Filename=TestDatabase.db", options =>
