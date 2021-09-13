@@ -37,6 +37,8 @@ namespace Trip.Creator.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IErrorHandlingService, ErrorHandlingService>();
+
             //////////////////////////////////////////
             /// Token Validation using IdentityServer4 Jwks
             /////////////////////////////////////////
@@ -87,6 +89,8 @@ namespace Trip.Creator.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip.Creator.Api v1"));
             }
+
+            app.UseEasyExceptionHandling();
 
             app.UseHttpsRedirection();
 

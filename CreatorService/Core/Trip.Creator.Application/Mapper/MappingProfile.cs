@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Trip.Creator.Application.Feature.Memories.Command.AddMemoriesCommand;
+using Trip.Creator.Application.Feature.Content.Command.CreateContent;
 using Trip.Creator.Domain.Entities;
 
 namespace Trip.Creator.Application.Mapper
@@ -12,7 +12,7 @@ namespace Trip.Creator.Application.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<AddMemoriesCommandRequest, Creation>().ReverseMap();
+            CreateMap<CreateContentCommandRequest, Creation>().ReverseMap();
         }
     }
 }

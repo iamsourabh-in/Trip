@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Trip.Creator.Application.Feature.Content.Command.CreateContent;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,8 +10,15 @@ namespace Trip.Creator.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MemoriesController : ControllerBase
+    public class ContentController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ContentController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         // GET: api/<MemoriesController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -28,8 +35,9 @@ namespace Trip.Creator.Api.Controllers
 
         // POST api/<MemoriesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromForm] CreateContentCommandRequest command)
         {
+            return Ok(await _mediator.Send(command));
         }
 
         // PUT api/<MemoriesController>/5

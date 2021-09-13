@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Trip.Application.Common\Trip.Application.Common.csproj" />
     <ProjectReference Include="..\Trip.Creator.Domain\Trip.Creator.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Feature\Content\Queries\GetContentDetails\" />
   </ItemGroup>
 
 </Project>

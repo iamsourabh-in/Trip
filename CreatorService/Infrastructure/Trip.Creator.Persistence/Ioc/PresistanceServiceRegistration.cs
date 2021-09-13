@@ -11,11 +11,11 @@ namespace Trip.Creator.Persistence.Ioc
         public static IServiceCollection RegisterPersistanceServices(this IServiceCollection services)
         {
 
-            List<Type> implementationToRegister = Assembly.Load("Trip.Creator.Persistance")
+            List<Type> implementationToRegister = Assembly.Load("Trip.Creator.Persistence")
                 .GetTypes()
                 .Where(x => x.IsClass)
                 .Where(x => !string.IsNullOrEmpty(x.Namespace))
-                .Where(x => x.Namespace.StartsWith("Trip.Creator.Persistance")).ToList();
+                .Where(x => x.Namespace.StartsWith("Trip.Creator.Persistence")).ToList();
 
             List<Type> interfaceToRegister = Assembly.Load("Trip.Creator.Application")
                 .GetTypes()

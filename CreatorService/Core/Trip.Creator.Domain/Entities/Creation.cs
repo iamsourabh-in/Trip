@@ -11,10 +11,8 @@ namespace Trip.Creator.Domain.Entities
     {
         public string Id { get; set; }
 
-        [Required]
-        public string ResourceURl { get; set; }
+        public string ResourceURL { get; set; }
 
-        [Required]
         public string ResourceMime { get; set; }
 
         public string Tags { get; set; }

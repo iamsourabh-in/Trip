@@ -23,7 +23,20 @@ namespace Trip.Creator.Api.ExceptionHandling
                     return Task.FromResult<ErrorResponse>(new ErrorResponse() { Code = "AppError", Message = exception.Message });
 
                 default:
-                    return Task.FromResult<ErrorResponse>(new ErrorResponse() { Code = "InternalError", Message = exception.Message });
+                    {
+                        var details = new Error();
+                        details.Code = exception.Source;
+                        details.Message = exception.StackTrace;
+                        var response = new ErrorResponse()
+                        {
+                            Code = "InternalError",
+                            Message = exception.Message,
+                        };
+                        response.Target = exception.TargetSite.ToString();
+                        response.Details = new Error[1];
+                        response.Details[1] = details;
+                        return Task.FromResult<ErrorResponse>(response);
+                    }
             }
         }
 

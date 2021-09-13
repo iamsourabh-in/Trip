@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Trip.Creator.Application.Feature.Memories.Command.AddMemoriesCommand
+namespace Trip.Creator.Application.Feature.Content.Queries.GetContent
 {
-	class AddMemoriesCommandHandler
-	{
-	}
+    public class GetContentQuery
+    {
+    }
 }
