@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Trip.Application.Common.FileManager;
+using Trip.Creator.Persistence.IO;
 
 namespace Trip.Creator.Persistence.Ioc
 {
@@ -41,6 +43,8 @@ namespace Trip.Creator.Persistence.Ioc
                     }
                 }
             });
+
+            services.AddSingleton<IFileService, FileService>();
 
             return services;
         }

@@ -12,14 +12,18 @@ namespace Trip.Creator.Persistence.IO
             throw new NotImplementedException();
         }
 
-        public async Task<bool> SaveFile(string fileNameWithExt, string path, Stream stream)
+        public async Task<string> SaveFileAsync(string path, string fileNameWithExt,  string content)
         {
-            throw new NotImplementedException();
+            var filepath = $"{path}\\{fileNameWithExt}";
+            await File.WriteAllTextAsync(filepath, content);
+            return filepath;
+        }
 
-            //using (var strm = System.IO.File.Create(path))
-            //{
-            //    await formFile.CopyToAsync(strm);
-            //}
+        public async Task<string> SaveFileAsync(string path, string fileNameWithExt, byte[] bytes)
+        {
+            var filepath = $"{path}\\{fileNameWithExt}";
+            await File.WriteAllBytesAsync(filepath, bytes);
+            return filepath;
         }
     }
 }

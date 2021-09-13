@@ -6,11 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Trip.Application.Common.FileManager;
+using Trip.Application.Common.Helpers;
 
 namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 {
     public class CreateContentCommandHandler : IRequestHandler<CreateContentCommandRequest, CreateContentCommandResponse>
     {
+        private readonly IFileService _fileService;
+
+        public CreateContentCommandHandler(IFileService fileService)
+        {
+            _fileService = fileService;
+        }
         public async Task<CreateContentCommandResponse> Handle(CreateContentCommandRequest request, CancellationToken cancellationToken)
         {
 
@@ -18,12 +26,16 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
             {
                 if (formFile.Length > 0)
                 {
-                    var filePath = Path.GetTempFileName();
+                    var content = formFile.ReadAsBytes();
 
-                    using (var stream = System.IO.File.Create(filePath))
-                    {
-                        await formFile.CopyToAsync(stream);
-                    }
+                    //var filePath = Path.GetTempFileName();
+
+                    await _fileService.SaveFileAsync(@"D:\Work\Trip\Trip\vCloud", formFile.FileName, content);
+
+                    //using (var stream = System.IO.File.Create(filePath))
+                    //{
+                    //    await formFile.CopyToAsync(stream);
+                    //}
                 }
             }
 
@@ -31,7 +43,7 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
             // then add a queue to process this post. ProcessMemories Thumbnail Generation for three resolutions
 
             // Return
-            throw new NotImplementedException();
+            return new CreateContentCommandResponse();
         }
     }
 }

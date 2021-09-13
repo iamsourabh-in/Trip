@@ -5,7 +5,8 @@ namespace Trip.Application.Common.FileManager
 {
     public interface IFileService
     {
-        public Task<bool> SaveFile(string fileNameWithExt, string path, Stream stream);
+        public Task<string> SaveFileAsync(string path, string fileNameWithExt, byte[] bytes);
+        public Task<string> SaveFileAsync(string fileNameWithExt, string path, string content);
 
         public bool ReadFileBytes(string fileNameWithExt, string path);
     }

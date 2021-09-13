@@ -34,7 +34,7 @@ namespace Trip.Creator.Api.ExceptionHandling
                         };
                         response.Target = exception.TargetSite.ToString();
                         response.Details = new Error[1];
-                        response.Details[1] = details;
+                        response.Details[0] = details;
                         return Task.FromResult<ErrorResponse>(response);
                     }
             }
