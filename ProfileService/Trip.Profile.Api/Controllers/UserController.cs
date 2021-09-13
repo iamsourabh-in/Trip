@@ -27,7 +27,6 @@ namespace Trip.Profile.Api.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            throw new ProfileApiException("Wah wah Exception");
             return new string[] { "value1", "value2" };
         }
 

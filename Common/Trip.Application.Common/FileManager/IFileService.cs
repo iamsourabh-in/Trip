@@ -7,7 +7,6 @@ namespace Trip.Application.Common.FileManager
     {
         public Task<string> SaveFileAsync(string path, string fileNameWithExt, byte[] bytes);
         public Task<string> SaveFileAsync(string fileNameWithExt, string path, string content);
-
-        public bool ReadFileBytes(string fileNameWithExt, string path);
+        public byte[] ReadFileBytes(string filePath);
     }
 }

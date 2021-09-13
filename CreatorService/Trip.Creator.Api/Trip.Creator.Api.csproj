@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Common\Trip.Api.Common\Trip.Api.Common.csproj" />
     <ProjectReference Include="..\Core\Trip.Creator.Application\Trip.Creator.Application.csproj" />
     <ProjectReference Include="..\Core\Trip.Creator.Domain\Trip.Creator.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure\Trip.Creator.Messaging\Trip.Creator.Messaging.csproj" />
     <ProjectReference Include="..\Infrastructure\Trip.Creator.Persistence\Trip.Creator.Persistence.csproj" />
   </ItemGroup>
 

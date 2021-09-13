@@ -6,7 +6,9 @@ namespace Trip.Creator.Persistence.Base
 {
     public class CreatorReaderDbContext : DbContext
     {
-        public DbSet<Creation> Users { get; set; }
+        public DbSet<Creation> Creation { get; set; }
+
+        public DbSet<CreationResource> CreationResource { get; set; }
 
         public CreatorReaderDbContext(DbContextOptions<CreatorReaderDbContext> options) : base(options)
         {

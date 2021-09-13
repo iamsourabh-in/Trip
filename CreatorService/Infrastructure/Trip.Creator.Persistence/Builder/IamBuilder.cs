@@ -19,6 +19,12 @@ namespace Trip.Creator.Persistence.Builder
                 entity.Property(e => e.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
                 entity.Property(e => e.Modified).HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
+            modelBuilder.Entity<Creation>().ToTable("CreationResource");
+            modelBuilder.Entity<CreationResource>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
+
         }
     }
 }

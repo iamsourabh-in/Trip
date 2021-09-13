@@ -7,7 +7,7 @@ namespace Trip.Creator.Persistence.IO
 {
     public class FileService : IFileService
     {
-        public bool ReadFileBytes(string fileNameWithExt, string path)
+        public byte[] ReadFileBytes(string filePath)
         {
             throw new NotImplementedException();
         }

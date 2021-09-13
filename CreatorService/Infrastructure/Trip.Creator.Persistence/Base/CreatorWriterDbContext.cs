@@ -10,7 +10,9 @@ namespace Trip.Creator.Persistence.Base
 {
     public class CreatorWriterDbContext : DbContext
     {
-        public DbSet<Creation> Users { get; set; }
+        public DbSet<Creation> Creation { get; set; }
+
+        public DbSet<CreationResource> CreationResource { get; set; }
         public CreatorWriterDbContext(DbContextOptions<CreatorWriterDbContext> options) : base(options)
         {
 

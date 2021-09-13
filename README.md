@@ -53,3 +53,14 @@ dotnet ef migrations add InitialCreate -c ProfileReaderDbContext
 ```sh
 dotnet ef database update -c ProfileReaderDbContext
 ```
+
+
+## Creator Service
+```sh
+dotnet ef migrations add InitialCreate -c CreatorWriterDbContext
+dotnet ef migrations add InitialCreate -c CreatorReaderDbContext
+```
+
+-Update Database
+```sh
+dotnet ef database update -c CreatorReaderDbContext

@@ -395,7 +395,7 @@ namespace IdentityServerHost.Quickstart.UI
         /// Entry point into the login workflow
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Register(string returnUrl)
+        public IActionResult Register(string returnUrl)
         {
             // build a model so we know what to show on the login page
             var vm = new RegisterViewModel();

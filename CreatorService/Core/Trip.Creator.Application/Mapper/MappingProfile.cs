@@ -13,6 +13,7 @@ namespace Trip.Creator.Application.Mapper
         public MappingProfile()
         {
             CreateMap<CreateContentCommandRequest, Creation>().ReverseMap();
+            CreateMap<CreateContentCommandRequest, CreationResource>().ReverseMap();
         }
     }
 }
