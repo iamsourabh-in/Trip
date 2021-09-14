@@ -20,9 +20,9 @@ The backend is built using .net5
 We are trying to sperate individual domain in the complete work flow and 
 
 - **Identity Service (Identity Server 4)**  - This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
-- **Profile Service**   This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
-- **Creator Service**   This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
-- **Feeder Service**  This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
+- **Profile Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
+- **Creator Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
+- **Feeder Service**  This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
 
 
 |                |HTTP              |HTTPS    |
