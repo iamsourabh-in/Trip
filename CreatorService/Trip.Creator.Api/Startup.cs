@@ -13,6 +13,8 @@ using Trip.Creator.Application.Ioc;
 using Trip.Creator.Persistence.Base;
 using Trip.Creator.Persistence.Ioc;
 using Trip.Creator.Messaging.Ioc;
+using Trip.Infrastructure.Common.RabbitMQ;
+using Trip.Domain.Common.Messaging.Creator;
 
 namespace Trip.Creator.Api
 {
@@ -83,6 +85,8 @@ namespace Trip.Creator.Api
 
             app.UseEasyExceptionHandling();
 
+            SubscribeEvents(app);
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -94,5 +98,11 @@ namespace Trip.Creator.Api
                 endpoints.MapControllers();
             });
         }
+
+        private static void SubscribeEvents(IApplicationBuilder app)
+        {
+            app.UseRabbitMq().SubscribeEvent<InitiateProcessCreationEvent>("InitiateProcessCreationEventQueue");
+        }
+
     }
 }

@@ -9,9 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Trip.Application.Common.FileManager;
 using Trip.Application.Common.Helpers;
+using Trip.Creator.Application.Contracts.Messaging;
 using Trip.Creator.Application.Contracts.Persistance;
 using Trip.Creator.Domain.Entities;
 using Trip.Domain.Common.Messaging;
+using Trip.Domain.Common.Messaging.Creator;
 
 namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 {
@@ -21,9 +23,9 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
         private readonly ICreationWriterRepository _creationWriterRepository;
         private readonly ICreationResourceWriterRepository _creationResourceWriterRepository;
         private readonly IMapper _mapper;
-        private readonly IBusPublisher _busPublisher;
+        private readonly IQueuePubliser _busPublisher;
 
-        public CreateContentCommandHandler(IFileService fileService, ICreationWriterRepository creationWriterRepository, IMapper mapper, IBusPublisher busPublisher, ICreationResourceWriterRepository creationResourceWriterRepository)
+        public CreateContentCommandHandler(IFileService fileService, ICreationWriterRepository creationWriterRepository, IMapper mapper, IQueuePubliser busPublisher, ICreationResourceWriterRepository creationResourceWriterRepository)
         {
             _creationWriterRepository = creationWriterRepository;
             _mapper = mapper;
@@ -58,6 +60,8 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
                 await _creationResourceWriterRepository.SaveAsync(item);
             }
 
+
+            await _busPublisher.InitiateCreationProcessing(new InitiateProcessCreationEvent() { CreationId = creation.Id });
             // Upload the files are create a path and save to db.
             // then add a queue to process this post. ProcessMemories Thumbnail Generation for three resolutions
 

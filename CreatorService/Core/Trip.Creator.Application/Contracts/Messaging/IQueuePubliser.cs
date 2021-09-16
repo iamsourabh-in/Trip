@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Trip.Creator.Domain.Entities;
+﻿using System.Threading.Tasks;
+using Trip.Domain.Common.Messaging.Creator;
 
 namespace Trip.Creator.Application.Contracts.Messaging
 {
     public interface IQueuePubliser
     {
-        public bool InitiateCreationProcessing(Creation creation);
+        public Task InitiateCreationProcessing(InitiateProcessCreationEvent creation);
     }
 }

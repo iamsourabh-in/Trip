@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Trip.Creator.Application.Contracts.Messaging;
 using Trip.Infrastructure.Common.RabbitMQ;
 
 namespace Trip.Creator.Messaging.Ioc
@@ -10,6 +11,7 @@ namespace Trip.Creator.Messaging.Ioc
         {
 
             services.AddRabbitMq(configuration);
+            services.AddScoped<IQueuePubliser, QueuePubliser>();
             return services;
 
         }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Trip.Infrastructure.Common\Trip.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\..\Core\Trip.Creator.Application\Trip.Creator.Application.csproj" />
   </ItemGroup>
 
 </Project>
