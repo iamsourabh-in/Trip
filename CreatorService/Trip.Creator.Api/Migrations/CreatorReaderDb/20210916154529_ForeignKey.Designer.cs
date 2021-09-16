@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trip.Creator.Persistence.Base;
 
-namespace Trip.Creator.Api.Migrations
+namespace Trip.Creator.Api.Migrations.CreatorReaderDb
 {
-    [DbContext(typeof(CreatorWriterDbContext))]
-    partial class CreatorWriterDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CreatorReaderDbContext))]
+    [Migration("20210916154529_ForeignKey")]
+    partial class ForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,7 +28,9 @@ namespace Trip.Creator.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("TEXT");
@@ -35,7 +39,9 @@ namespace Trip.Creator.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Modified")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("TEXT");

@@ -8,5 +8,10 @@ namespace Trip.Creator.Application.Exceptions
 {
     public class CreatorApplicationException : Exception
     {
+
+        public CreatorApplicationException(string message):base(message)
+        {
+
+        }
     }
 }

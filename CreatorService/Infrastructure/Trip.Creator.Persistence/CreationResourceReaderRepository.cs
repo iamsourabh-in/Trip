@@ -23,9 +23,16 @@ namespace Trip.Creator.Persistence
             return (await _profileReaderDbContext.CreationResource.Where(item => item.Id == entity.Id).FirstOrDefaultAsync());
         }
 
+        public async Task<List<CreationResource>> GetByCreationIdAsync(string id)
+        {
+            return await _profileReaderDbContext.CreationResource.Where(item => item.Creation.Id == id).ToListAsync();
+        }
+
         public async override Task<CreationResource> GetByIdAsync(string id)
         {
             return (await _profileReaderDbContext.CreationResource.Where(item => item.Id == id).FirstOrDefaultAsync());
         }
+
+
     }
 }

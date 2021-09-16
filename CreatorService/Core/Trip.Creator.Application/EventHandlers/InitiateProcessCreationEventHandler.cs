@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Trip.Application.Common.FileManager;
+using Trip.Application.Common.Helpers;
 using Trip.Creator.Application.Contracts.Persistance;
 using Trip.Domain.Common.Messaging.Creator;
 
@@ -29,9 +32,35 @@ namespace Trip.Creator.Application.EventHandlers
         }
         public async Task<Unit> Handle(InitiateProcessCreationEvent request, CancellationToken cancellationToken)
         {
-            var creation = await _creationReaderRepository.GetByIdAsync(request.CreationId);
+            try
+            {
+                var creationResource = await _creationResourceReaderRepository.GetByCreationIdAsync(request.CreationId);
 
-            return Unit.Value;
+                var creation = await _creationReaderRepository.GetByIdAsync(request.CreationId);
+
+                foreach (var resource in creationResource)
+                {
+                    ImageProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
+                    {
+                        originPath = resource.Path,
+                        fileName = Path.GetFileName(resource.Path),
+                        size = "medium"
+                    });
+
+                    // Read File , Mime Type 
+
+                    // Based on Mime Type Generate the Thumbnail with small, medium, original.
+
+                    // Add It to Users Feed and make this public for other to see of they follow him/her.
+
+                }
+
+                return Unit.Value;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

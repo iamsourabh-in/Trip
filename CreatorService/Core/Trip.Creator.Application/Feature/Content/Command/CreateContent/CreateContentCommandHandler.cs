@@ -11,6 +11,7 @@ using Trip.Application.Common.FileManager;
 using Trip.Application.Common.Helpers;
 using Trip.Creator.Application.Contracts.Messaging;
 using Trip.Creator.Application.Contracts.Persistance;
+using Trip.Creator.Application.Exceptions;
 using Trip.Creator.Domain.Entities;
 using Trip.Domain.Common.Messaging;
 using Trip.Domain.Common.Messaging.Creator;
@@ -36,6 +37,7 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 
         public async Task<CreateContentCommandResponse> Handle(CreateContentCommandRequest request, CancellationToken cancellationToken)
         {
+            ValidateFiles(request);
             var creationResource = new List<CreationResource>();
             foreach (var formFile in request.files)
             {
@@ -67,6 +69,25 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 
             // Return
             return new CreateContentCommandResponse();
+        }
+
+        public void ValidateFiles(CreateContentCommandRequest request)
+        {
+            var filesize = 5;
+            var supportedTypes = new[] { "jpg", "jpeg", "mp4", "flv", "avi" };
+            foreach (var file in request.files)
+            {
+                var fileExt = Path.GetExtension(file.FileName).Substring(1);
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    throw new CreatorApplicationException($"{ file.FileName }File now Supported");
+                   
+                }
+                else if (file.Length > (filesize * 1024 * 1024))
+                {
+                    throw new CreatorApplicationException($"Max file size should be less than" + filesize + "MB");
+                }
+            }
         }
     }
 }

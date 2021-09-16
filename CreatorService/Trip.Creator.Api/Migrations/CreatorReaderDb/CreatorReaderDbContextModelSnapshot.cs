@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Trip.Creator.Persistence.Base;
 
-namespace Trip.Creator.Api.Migrations
+namespace Trip.Creator.Api.Migrations.CreatorReaderDb
 {
-    [DbContext(typeof(CreatorWriterDbContext))]
-    partial class CreatorWriterDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CreatorReaderDbContext))]
+    partial class CreatorReaderDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -26,7 +26,9 @@ namespace Trip.Creator.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("TEXT");
@@ -35,7 +37,9 @@ namespace Trip.Creator.Api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Modified")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("ModifiedBy")
                         .HasColumnType("TEXT");
