@@ -14,6 +14,7 @@ namespace Trip.Application.Common.Helpers
 {
     public class FileProcessor
     {
+        private const string FFmpegToolPath = @"D:\Work\Trip\Trip\CreatorService\Trip.Creator.Api\bin\Debug\net5.0";
         public static async Task<string> GenerateThumbnail(GenerateThumbnailRequest thumbReq)
         {
             if (thumbReq is null)
@@ -22,9 +23,20 @@ namespace Trip.Application.Common.Helpers
             }
             try
             {
-                var outputPath = Path.Combine(@"D:\Work\Trip\Trip\vCloud", thumbReq.size, thumbReq.fileName);
-                using var image = await Image.LoadAsync(thumbReq.originPath);
-                image.Mutate(x => x.Resize(image.Width / 2, image.Height / 2));
+                var outputPath = String.Empty;
+                using var image = await Image.LoadAsync(thumbReq.originalFullPath);
+
+                if (thumbReq.size == FileProcessorSizeEnum.Medium)
+                {
+                    outputPath = Path.Combine(thumbReq.outputPath, thumbReq.fileName);
+                    image.Mutate(x => x.Resize(image.Width / 2, image.Height / 2));
+                }
+                if (thumbReq.size == FileProcessorSizeEnum.Small)
+                {
+                    outputPath = Path.Combine(thumbReq.outputPath, thumbReq.fileName);
+                    image.Mutate(x => x.Resize(image.Width / 4, image.Height / 4));
+                }
+
                 image.Save(outputPath);
                 return outputPath;
             }
@@ -37,10 +49,11 @@ namespace Trip.Application.Common.Helpers
         {
             try
             {
-                string outputPath = Path.Combine(@"D:\Work\Trip\Trip\vCloud", thumbReq.size, Guid.NewGuid().ToString() + ".png");
-                await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Official, @"D:\Work\Trip\Trip\CreatorService\Trip.Creator.Api\bin\Debug\net5.0");
-                FFmpeg.SetExecutablesPath(@"D:\Work\Trip\Trip\CreatorService\Trip.Creator.Api\bin\Debug\net5.0");
-                IConversion conversion = await FFmpeg.Conversions.FromSnippet.Snapshot(thumbReq.originPath, outputPath,
+                var snapnotFileName = thumbReq.fileName.Split('.')[0];
+                string outputPath = Path.Combine(thumbReq.outputPath, Guid.NewGuid().ToString() + ".png");
+                await FFmpegDownloader.GetLatestVersion(FFmpegVersion.Official, FFmpegToolPath);
+                FFmpeg.SetExecutablesPath(FFmpegToolPath);
+                IConversion conversion = await FFmpeg.Conversions.FromSnippet.Snapshot(thumbReq.originalFullPath, outputPath,
                 TimeSpan.FromSeconds(0));
                 IConversionResult result = await conversion.Start();
                 return outputPath;
@@ -69,9 +82,9 @@ namespace Trip.Application.Common.Helpers
 
     public class GenerateThumbnailRequest
     {
-        public string originPath { get; set; }
+        public string originalFullPath { get; set; }
         public string fileName { get; set; }
         public string outputPath { get; set; }
-        public string size { get; set; } = "medium";
+        public FileProcessorSizeEnum size { get; set; }
     }
 }

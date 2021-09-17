@@ -20,6 +20,7 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 {
     public class CreateContentCommandHandler : IRequestHandler<CreateContentCommandRequest, CreateContentCommandResponse>
     {
+        private const string CloudPath = @"D:\Work\Trip\Trip\vCloud";
         private readonly IFileService _fileService;
         private readonly ICreationWriterRepository _creationWriterRepository;
         private readonly ICreationResourceWriterRepository _creationResourceWriterRepository;
@@ -43,12 +44,15 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
             {
                 if (formFile.Length > 0)
                 {
+                    var ext = Path.GetExtension(formFile.FileName);
+                    var newFileName = Guid.NewGuid().ToString() + $".{ext}";
+
                     var content = formFile.ReadAsBytes();
-                    var path = await _fileService.SaveFileAsync(@"D:\Work\Trip\Trip\vCloud", formFile.FileName, content);
+                    var path = await _fileService.SaveFileAsync(CloudPath, newFileName, content);
 
                     var resource = new CreationResource();
                     resource.Path = path;
-                    resource.MimeType = Path.GetExtension(path);
+                    resource.MimeType = ext;
                     creationResource.Add(resource);
                 }
             }
@@ -74,14 +78,14 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
         public void ValidateFiles(CreateContentCommandRequest request)
         {
             var filesize = 5;
-            var supportedTypes = new[] { "jpg", "jpeg", "mp4", "flv", "avi" };
+            var supportedTypes = new[] { "jpg", "jpeg", "png", "mp4" };
             foreach (var file in request.files)
             {
                 var fileExt = Path.GetExtension(file.FileName).Substring(1);
                 if (!supportedTypes.Contains(fileExt))
                 {
-                    throw new CreatorApplicationException($"{ file.FileName }File now Supported");
-                   
+                    throw new CreatorApplicationException($"File with name { file.FileName } is not Supported");
+
                 }
                 else if (file.Length > (filesize * 1024 * 1024))
                 {

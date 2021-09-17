@@ -23,6 +23,9 @@ namespace Trip.Creator.Application.EventHandlers
         private readonly ICreationResourceReaderRepository _creationResourceReaderRepository;
         private readonly IMapper _mapper;
         private readonly ICreationResourceWriterRepository _creationResourceWriterRepository;
+        private const string CloudPath = @"D:\Work\Trip\Trip\vCloud";
+        private string MediumCloudPath = CloudPath + @"\medium";
+        private string SmallCloudPath = CloudPath + @"\small";
 
         public InitiateProcessCreationEventHandler(
             IFileService fileService,
@@ -52,15 +55,18 @@ namespace Trip.Creator.Application.EventHandlers
                     {
                         resource.MediumPath = await FileProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
                         {
-                            originPath = resource.Path,
+                            originalFullPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
-                            size = "medium"
+                            size = FileProcessorSizeEnum.Medium,
+                            outputPath = MediumCloudPath
+
                         });
                         resource.SmallPath = await FileProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
                         {
-                            originPath = resource.Path,
+                            originalFullPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
-                            size = "small"
+                            size = FileProcessorSizeEnum.Small,
+                            outputPath = SmallCloudPath
                         });
                     }
 
@@ -68,15 +74,17 @@ namespace Trip.Creator.Application.EventHandlers
                     {
                         resource.MediumPath = await FileProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
                         {
-                            originPath = resource.Path,
+                            originalFullPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
-                            size = "medium"
+                            size = FileProcessorSizeEnum.Medium,
+                            outputPath = MediumCloudPath
                         });
                         resource.SmallPath = await FileProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
                         {
-                            originPath = resource.Path,
+                            originalFullPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
-                            size = "small"
+                            size = FileProcessorSizeEnum.Small,
+                            outputPath = SmallCloudPath
                         });
                     }
 
