@@ -1,8 +1,13 @@
+
+# Editor.md
+
+
+
 # Trip
 
 ##### A microservices based approach for a scalable architecture.(_This project is a skeleton for experimental purpose._)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger) 
 
 This is full stack solution using .Net Technologies.
 
@@ -56,8 +61,10 @@ We are trying to sperate individual domain in the complete work flow and
 
 
 # Frontend
-- **Tripper.UI** - 1000,1443(s)
-- **Identity Admin Panel ** 
+- **Tripper.UI** - `1000` , `1443` - (Experimental) Build on Balzor WebAssembly. Login using oauth2 from identity server 4  using only client id(client secrets cant be manged client side). The App will proive an inter face to upload his creation (images/videos) and he will be able to see it in his post which his friends will also be able to see.
+
+- **idolmaker** - Angular template for ui. Soon...
+- **Identity Admin Panel **  - `5000` , `5443`  -Available on the indentity server currently and can be used to add user/roles/clients - few feature still in progress
 
 
 ![alt text](https://github.com/iamsourabh-in/Trip/blob/master/_docs/images/admin_panel.jpg)
@@ -133,12 +140,5 @@ TripperUI ->> Creator Service: Add Creation
 TripperUI ->> Feed Service: Get Memories 
 ```
 
-And this will produce a flow chart:
 
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+
