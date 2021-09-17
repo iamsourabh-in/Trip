@@ -89,9 +89,7 @@ namespace Trip.Creator.Application.EventHandlers
                     }
 
                     await _creationResourceWriterRepository.UpdateAsync(resource);
-                    // Read File , Mime Type 
-
-                    // Based on Mime Type Generate the Thumbnail with small, medium, original.
+                   
 
                     // Add It to Users Feed and make this public for other to see of they follow him/her.
 
