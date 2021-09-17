@@ -9,6 +9,28 @@ This is full stack solution using .Net Technologies.
 >A user can upload a photo, video the video and photos thumbnails would be generated and the user can later browser his photos and can share them with friends.
 >
 
+# Design
+
+One of the best approach to build software systems
+
+![alt text](https://github.com/iamsourabh-in/Trip/blob/master/_docs/images/clean.png)
+
+### Entities:
+These are the enterprise business objects of your application. These should not be affected by any change external to them, and these should be the most stable code within your application.
+
+### Use Cases:
+Implement and encapsulate all of the business rules.
+
+### Interface Adapters:
+Convert and present data to the use case and entity layers.
+
+### Frameworks and Drivers:
+Contain any frameworks or tools you need to run your application.
+
+### The key concepts here are:
+Any layer can only reference a layer below it and know nothing about what’s going on above. The use cases and entities are the heart of your application and should have a minimal set of external library dependencies.
+
+
 # Gateway
 
 Soon...
@@ -35,6 +57,11 @@ We are trying to sperate individual domain in the complete work flow and
 
 # Frontend
 - **Tripper.UI** - 1000,1443(s)
+- **Identity Admin Panel ** 
+
+
+![alt text](https://github.com/iamsourabh-in/Trip/blob/master/_docs/images/admin_panel.jpg)
+
 
 # Key Features
 
