@@ -1,8 +1,3 @@
-
-# Editor.md
-
-
-
 # Trip
 
 ##### A microservices based approach for a scalable architecture.(_This project is a skeleton for experimental purpose._)
