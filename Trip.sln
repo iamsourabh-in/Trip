@@ -80,7 +80,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Feeds.Persistence", "F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{330CE834-BF6A-4AB9-A0EC-46D1C6AE8B49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tripper.UI", "Client\Tripper.UI\Tripper.UI.csproj", "{C6FB39DD-D13D-4EDA-8304-8E0DC95E1475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tripper.UI", "Client\Tripper.UI\Tripper.UI.csproj", "{C6FB39DD-D13D-4EDA-8304-8E0DC95E1475}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{047753EF-72B2-4D8D-92CB-20D8B1064B56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F9C795AE-1510-48AE-A824-5AE4701B58A4}"
+	ProjectSection(SolutionItems) = preProject
+		_docs\images\admin_panel.jpg = _docs\images\admin_panel.jpg
+		_docs\images\clean.png = _docs\images\clean.png
+		_docs\images\Screenshot 2021-09-05 125038.jpg = _docs\images\Screenshot 2021-09-05 125038.jpg
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -216,6 +225,7 @@ Global
 		{A2B8D6B8-6C1E-48E0-8E0A-530449C6502B} = {926089C4-6967-4007-B952-E902E0A4177C}
 		{633B2DD4-A1FE-4E5A-96F3-18CFC4578E20} = {8357DE24-FCCD-4E76-82A4-ECC93CB9B05D}
 		{C6FB39DD-D13D-4EDA-8304-8E0DC95E1475} = {330CE834-BF6A-4AB9-A0EC-46D1C6AE8B49}
+		{F9C795AE-1510-48AE-A824-5AE4701B58A4} = {047753EF-72B2-4D8D-92CB-20D8B1064B56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68F2BE62-8316-4373-849B-9A019F3CF5E6}
