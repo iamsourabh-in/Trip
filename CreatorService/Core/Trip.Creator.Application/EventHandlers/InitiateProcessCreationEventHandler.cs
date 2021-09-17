@@ -22,14 +22,22 @@ namespace Trip.Creator.Application.EventHandlers
         private readonly ICreationReaderRepository _creationReaderRepository;
         private readonly ICreationResourceReaderRepository _creationResourceReaderRepository;
         private readonly IMapper _mapper;
+        private readonly ICreationResourceWriterRepository _creationResourceWriterRepository;
 
-        public InitiateProcessCreationEventHandler(IFileService fileService, ICreationReaderRepository creationReaderRepository, IMapper mapper, ICreationResourceReaderRepository creationResourceReaderRepository)
+        public InitiateProcessCreationEventHandler(
+            IFileService fileService,
+            ICreationReaderRepository creationReaderRepository,
+            IMapper mapper,
+            ICreationResourceReaderRepository creationResourceReaderRepository,
+            ICreationResourceWriterRepository creationResourceWriterRepository)
         {
+            _creationResourceWriterRepository = creationResourceWriterRepository;
             _creationReaderRepository = creationReaderRepository;
             _mapper = mapper;
             _fileService = fileService;
             _creationResourceReaderRepository = creationResourceReaderRepository;
         }
+
         public async Task<Unit> Handle(InitiateProcessCreationEvent request, CancellationToken cancellationToken)
         {
             try
@@ -40,26 +48,39 @@ namespace Trip.Creator.Application.EventHandlers
 
                 foreach (var resource in creationResource)
                 {
-                    if (ImageProcessor.IsImage(resource.Path))
+                    if (FileProcessor.IsImage(resource.Path))
                     {
-                        ImageProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
+                        resource.MediumPath = await FileProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
                         {
                             originPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
                             size = "medium"
                         });
+                        resource.SmallPath = await FileProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
+                        {
+                            originPath = resource.Path,
+                            fileName = Path.GetFileName(resource.Path),
+                            size = "small"
+                        });
                     }
 
-                    if (ImageProcessor.IsVideo(resource.Path))
+                    if (FileProcessor.IsVideo(resource.Path))
                     {
-                        await ImageProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
+                        resource.MediumPath = await FileProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
                         {
                             originPath = resource.Path,
                             fileName = Path.GetFileName(resource.Path),
                             size = "medium"
                         });
+                        resource.SmallPath = await FileProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
+                        {
+                            originPath = resource.Path,
+                            fileName = Path.GetFileName(resource.Path),
+                            size = "small"
+                        });
                     }
 
+                    await _creationResourceWriterRepository.UpdateAsync(resource);
                     // Read File , Mime Type 
 
                     // Based on Mime Type Generate the Thumbnail with small, medium, original.

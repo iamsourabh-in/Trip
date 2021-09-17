@@ -39,12 +39,11 @@ We are trying to sperate individual domain in the complete work flow and
 # Key Features
 
 - The services use a Clean Architecture approach using CQRS
-- We have used Serrilog for Logging andcan be visible in Serrilog Dashboad.
+- We have used Serrilog for Logging and can be visible in Serrilog Dashboad.
 - The Identity Service has an in build simple Admin Panel to view and edit roles/users.
 - The Service exposes an health check endpoint with system resources info.
-- The Service also expose metrics for Promethues
-- Can be Integrated With Grafana.
-- The Service communicates to each other via MSMQ -> RabbitMQ
+- The Service also expose metrics for Promethues and can be Integrated With Grafana.
+- The service communicates to each other for eventual consitency via MSMQ -> RabbitMQ
 
 # Initial Setup
 
