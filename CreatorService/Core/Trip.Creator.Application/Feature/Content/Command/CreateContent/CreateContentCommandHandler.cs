@@ -45,7 +45,7 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
                 if (formFile.Length > 0)
                 {
                     var ext = Path.GetExtension(formFile.FileName);
-                    var newFileName = Guid.NewGuid().ToString() + $".{ext}";
+                    var newFileName = $"{Guid.NewGuid()}{ext}";
 
                     var content = formFile.ReadAsBytes();
                     var path = await _fileService.SaveFileAsync(CloudPath, newFileName, content);

@@ -25,15 +25,14 @@ namespace Trip.Application.Common.Helpers
             {
                 var outputPath = String.Empty;
                 using var image = await Image.LoadAsync(thumbReq.originalFullPath);
+                outputPath = Path.Combine(thumbReq.outputPath, thumbReq.fileName);
 
                 if (thumbReq.size == FileProcessorSizeEnum.Medium)
                 {
-                    outputPath = Path.Combine(thumbReq.outputPath, thumbReq.fileName);
                     image.Mutate(x => x.Resize(image.Width / 2, image.Height / 2));
                 }
                 if (thumbReq.size == FileProcessorSizeEnum.Small)
                 {
-                    outputPath = Path.Combine(thumbReq.outputPath, thumbReq.fileName);
                     image.Mutate(x => x.Resize(image.Width / 4, image.Height / 4));
                 }
 
