@@ -40,12 +40,25 @@ namespace Trip.Creator.Application.EventHandlers
 
                 foreach (var resource in creationResource)
                 {
-                    ImageProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
+                    if (ImageProcessor.IsImage(resource.Path))
                     {
-                        originPath = resource.Path,
-                        fileName = Path.GetFileName(resource.Path),
-                        size = "medium"
-                    });
+                        ImageProcessor.GenerateThumbnail(new GenerateThumbnailRequest()
+                        {
+                            originPath = resource.Path,
+                            fileName = Path.GetFileName(resource.Path),
+                            size = "medium"
+                        });
+                    }
+
+                    if (ImageProcessor.IsVideo(resource.Path))
+                    {
+                        await ImageProcessor.GenerateVideoThumbnail(new GenerateThumbnailRequest()
+                        {
+                            originPath = resource.Path,
+                            fileName = Path.GetFileName(resource.Path),
+                            size = "medium"
+                        });
+                    }
 
                     // Read File , Mime Type 
 
@@ -62,5 +75,7 @@ namespace Trip.Creator.Application.EventHandlers
                 throw;
             }
         }
+
+
     }
 }
