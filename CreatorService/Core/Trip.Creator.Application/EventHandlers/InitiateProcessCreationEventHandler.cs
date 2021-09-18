@@ -10,14 +10,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using Trip.Application.Common.FileManager;
 using Trip.Application.Common.Helpers;
+using Trip.Creator.Application.Contracts.Messaging;
 using Trip.Creator.Application.Contracts.Persistance;
+using Trip.Domain.Common.IntegrationEventModels;
 using Trip.Domain.Common.Messaging.Creator;
 
 namespace Trip.Creator.Application.EventHandlers
 {
     public class InitiateProcessCreationEventHandler : IRequestHandler<InitiateProcessCreationEvent>
     {
-
+        private readonly IQueuePubliser _busPublisher;
         private readonly IFileService _fileService;
         private readonly ICreationReaderRepository _creationReaderRepository;
         private readonly ICreationResourceReaderRepository _creationResourceReaderRepository;
@@ -32,13 +34,14 @@ namespace Trip.Creator.Application.EventHandlers
             ICreationReaderRepository creationReaderRepository,
             IMapper mapper,
             ICreationResourceReaderRepository creationResourceReaderRepository,
-            ICreationResourceWriterRepository creationResourceWriterRepository)
+            ICreationResourceWriterRepository creationResourceWriterRepository, IQueuePubliser busPublisher)
         {
             _creationResourceWriterRepository = creationResourceWriterRepository;
             _creationReaderRepository = creationReaderRepository;
             _mapper = mapper;
             _fileService = fileService;
             _creationResourceReaderRepository = creationResourceReaderRepository;
+            _busPublisher = busPublisher;
         }
 
         public async Task<Unit> Handle(InitiateProcessCreationEvent request, CancellationToken cancellationToken)
@@ -89,9 +92,9 @@ namespace Trip.Creator.Application.EventHandlers
                     }
 
                     await _creationResourceWriterRepository.UpdateAsync(resource);
-                   
 
-                    // Add It to Users Feed and make this public for other to see of they follow him/her.
+
+                    await _busPublisher.CreateCreationFeedFromCreation(new CreateCreationFeedFromCreationEvent() { CreationId = creation.Id });
 
                 }
 

@@ -8,5 +8,6 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 {
 	public class CreateContentCommandResponse
 	{
+		public string CreationId {  get; set; }
 	}
 }

@@ -30,6 +30,10 @@ Contain any frameworks or tools you need to run your application.
 ### The key concepts here are:
 Any layer can only reference a layer below it and know nothing about what’s going on above. The use cases and entities are the heart of your application and should have a minimal set of external library dependencies.
 
+### Events 
+The Vents are sgregated based on two types Domain Events and IntegrationEvents
+
+
 
 # Gateway
 
@@ -44,7 +48,7 @@ We are trying to sperate individual domain in the complete work flow and
 - **Identity Service (Identity Server 4)**  - This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
 - **Profile Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
 - **Creator Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
-- **Feeder Service**  This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
+- **Feeder Service**  This service is built using .net 5 and have uses Mongo for the Database and is built using a code first approach.
 
 
 |                |HTTP              |HTTPS    |
@@ -73,6 +77,7 @@ We are trying to sperate individual domain in the complete work flow and
 - The Service exposes an health check endpoint with system resources info.
 - The Service also expose metrics for Promethues and can be Integrated With Grafana.
 - The service communicates to each other for eventual consitency via MSMQ -> RabbitMQ
+- The service communicate also via GRPC for syncronus calls.
 
 # Initial Setup
 
@@ -81,13 +86,14 @@ We are trying to sperate individual domain in the complete work flow and
 ### Identity Service
 
 #### Create Migrations 
+- Add Migrations
 ```sh
 dotnet ef migrations add InitialCreate -c PersistedGrantDbContext
 dotnet ef migrations add InitialCreate -c ConfigurationDbContext
 dotnet ef migrations add InitialCreate -c ApplicationDbContext
 ```
 
-Update Database
+- Update Database
 ```sh
 dotnet ef database update -c  PersistedGrantDbContext
 dotnet ef database update -c  ConfigurationDbContext
@@ -99,27 +105,34 @@ dotnet run /seed
 ```
 
 ## Profile Service
+- Add Migrations
+
 ```sh
 dotnet ef migrations add InitialCreate -c ProfileWriterDbContext
 dotnet ef migrations add InitialCreate -c ProfileReaderDbContext
 ```
 
--Update Database
+- Update Database
 ```sh
 dotnet ef database update -c ProfileReaderDbContext
 ```
 
 
 ## Creator Service
+- Add Migrations
 ```sh
 dotnet ef migrations add InitialCreate -c CreatorWriterDbContext
 dotnet ef migrations add InitialCreate -c CreatorReaderDbContext
 ```
 
-Update Database
+- Update Database
 ```sh
 dotnet ef database update -c CreatorReaderDbContext
 ```
+
+## Feeds Service
+
+This service is using mongodb and dont require Migrations.`27017`
 
 ## Identity Auth Flow
 

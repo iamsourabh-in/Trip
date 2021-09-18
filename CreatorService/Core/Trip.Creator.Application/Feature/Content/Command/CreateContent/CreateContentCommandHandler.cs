@@ -68,11 +68,8 @@ namespace Trip.Creator.Application.Feature.Content.Command.CreateContent
 
 
             await _busPublisher.InitiateCreationProcessing(new InitiateProcessCreationEvent() { CreationId = creation.Id });
-            // Upload the files are create a path and save to db.
-            // then add a queue to process this post. ProcessMemories Thumbnail Generation for three resolutions
 
-            // Return
-            return new CreateContentCommandResponse();
+            return new CreateContentCommandResponse() { CreationId = creation.Id };
         }
 
         public void ValidateFiles(CreateContentCommandRequest request)

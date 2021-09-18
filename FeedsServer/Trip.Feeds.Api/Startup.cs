@@ -7,10 +7,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using System;
+using Trip.Domain.Common;
+using Trip.Domain.Common.IntegrationEventModels;
 using Trip.Feeds.Api.ExceptionHandling;
 using Trip.Feeds.Application.Ioc;
 using Trip.Feeds.Messaging.Ioc;
 using Trip.Feeds.Persistence.Ioc;
+using Trip.Infrastructure.Common.RabbitMQ;
 
 namespace Trip.Feeds.Api
 {
@@ -81,6 +84,8 @@ namespace Trip.Feeds.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip.Feeds.Api v1"));
             }
 
+            SubscribeEvents(app);
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -93,6 +98,12 @@ namespace Trip.Feeds.Api
             {
                 endpoints.MapControllers();
             });
+        }
+
+
+        private static void SubscribeEvents(IApplicationBuilder app)
+        {
+            app.UseRabbitMq().SubscribeEvent<CreateCreationFeedFromCreationEvent>(IntegrationQueues.CreateCreationFeedFromCreationEventQueue);
         }
     }
 }
