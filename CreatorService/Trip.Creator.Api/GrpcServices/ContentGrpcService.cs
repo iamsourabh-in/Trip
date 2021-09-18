@@ -14,6 +14,8 @@ namespace Trip.Creator.Api.GrpcServices
         public async override Task GetContent(GetContentRequest request, IServerStreamWriter<GetContentReply> response, ServerCallContext serverCallContext)
         {
             await response.WriteAsync(new GetContentReply() { Message = "Hi from Grpc" });
+            await Task.Delay(3000);
+            await response.WriteAsync(new GetContentReply() { Message = "Hi from Grpc after processing." });
         }
     }
 }

@@ -4,6 +4,11 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger) 
 
+
+<img src="https://github.com/iamsourabh-in/Trip/tree/master/_docs/images/aws.svg">
+
+
+
 This is full stack solution using .Net Technologies.
 
 >A user can upload a photo, video the video and photos thumbnails would be generated and the user can later browser his photos and can share them with friends.
