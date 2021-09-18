@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Feeds.Api.Client;
 
 namespace Trip.Feeds.Api.Controllers
 {
@@ -15,6 +16,7 @@ namespace Trip.Feeds.Api.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            GrpcClient.Get();
             return new string[] { "value1", "value2" };
         }
 

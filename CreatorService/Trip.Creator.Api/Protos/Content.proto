@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "Trip.Creator.Api.Protos";
+
+service Content {
+  rpc GetContent (GetContentRequest) returns (stream GetContentReply);
+}
+
+message GetContentRequest {
+  string ContentId = 1;
+}
+
+message GetContentReply {
+  string message = 1;
+}

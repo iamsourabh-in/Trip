@@ -16,6 +16,7 @@ using Trip.Creator.Messaging.Ioc;
 using Trip.Infrastructure.Common.RabbitMQ;
 using Trip.Domain.Common.Messaging.Creator;
 using Xabe.FFmpeg.Downloader;
+using Trip.Creator.Api.GrpcServices;
 
 namespace Trip.Creator.Api
 {
@@ -31,6 +32,7 @@ namespace Trip.Creator.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddGrpc();
             services.AddSingleton<IErrorHandlingService, ErrorHandlingService>();
 
             //////////////////////////////////////////
@@ -96,6 +98,7 @@ namespace Trip.Creator.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapGrpcService<ContentGrpcService>();
                 endpoints.MapControllers();
             });
 
