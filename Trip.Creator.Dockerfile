@@ -21,7 +21,6 @@ COPY ["CreatorService/Infrastructure/Trip.Creator.Persistence/Trip.Creator.Persi
 RUN dotnet restore "CreatorService/Trip.Creator.Api/Trip.Creator.Api.csproj"
 COPY . .
 WORKDIR "/src/CreatorService/Trip.Creator.Api"
-RUN dotnet build "Trip.Creator.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Trip.Creator.Api.csproj" -c Release -o /app/publish

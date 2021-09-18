@@ -18,7 +18,6 @@ COPY ["Common/Trip.Infrastructure.Common/Trip.Infrastructure.Common.csproj", "Co
 RUN dotnet restore "FeedsServer/Trip.Feeds.Api/Trip.Feeds.Api.csproj"
 COPY . .
 WORKDIR "/src/FeedsServer/Trip.Feeds.Api"
-RUN dotnet build "Trip.Feeds.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Trip.Feeds.Api.csproj" -c Release -o /app/publish

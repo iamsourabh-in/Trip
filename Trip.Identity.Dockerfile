@@ -18,7 +18,7 @@ COPY ["IdentityServer/Infrastructure/Trip.Identity.Messaging/Trip.Identity.Messa
 RUN dotnet restore "IdentityServer/Trip.Identity/Trip.Identity.csproj"
 COPY . .
 WORKDIR "/src/IdentityServer/Trip.Identity"
-RUN dotnet build "Trip.Identity.csproj" -c Release -o /app/build
+
 
 FROM build AS publish
 RUN dotnet publish "Trip.Identity.csproj" -c Release -o /app/publish

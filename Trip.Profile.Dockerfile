@@ -19,7 +19,6 @@ COPY ["ProfileService/Infrastructure/Trip.Profile.Persistance/Trip.Profile.Persi
 RUN dotnet restore "ProfileService/Trip.Profile.Api/Trip.Profile.Api.csproj"
 COPY . .
 WORKDIR "/src/ProfileService/Trip.Profile.Api"
-RUN dotnet build "Trip.Profile.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Trip.Profile.Api.csproj" -c Release -o /app/publish

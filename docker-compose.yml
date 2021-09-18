@@ -1,56 +1,53 @@
 version: '3.9'
 
-networks:
-    localdev:
-        name: localdev
-
 services:
     identity-api:
         build:
             context: .
             dockerfile: Trip.Identity.Dockerfile
+        depends_on:
+            - rabbitmq3
         restart: always
         ports:
-            - "5000:80"
-        networks:
-            - localdev
+            - "5000:5000"
     
     creator-api:
         build:
             context: .
             dockerfile: Trip.Creator.Dockerfile
+        depends_on:
+            - rabbitmq3
         restart: always
         ports:
-            - "7000:80"
-        networks:
-            - localdev
+            - "7000:7000"
     
     profile-api:
         build:
             context: .
             dockerfile: Trip.Profile.Dockerfile
+        depends_on:
+            - rabbitmq3
         restart: always
         ports:
-            - "6000:80"
-        networks:
-            - localdev
+            - "6000:6000"
     
     feeds-api:
         build:
             context: .
             dockerfile: Trip.Feeds.Dockerfile
+        depends_on:
+            - rabbitmq3
         restart: always
         ports:
-            - "8000:80"
-        networks:
-            - localdev
+            - "8000:8000"
+
 
     rabbitmq3:
         container_name: "rabbitmq"
         image: rabbitmq:3-management
         environment:
-            - RABBITMQ_DEFAULT_USER=myuser
-            - RABBITMQ_DEFAULT_PASS=mypassword
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=guest
         ports:
             # AMQP protocol port
             - '5672:5672'
