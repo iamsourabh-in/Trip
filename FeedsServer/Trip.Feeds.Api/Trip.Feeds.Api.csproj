@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyException" Version="1.0.1" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\Trip.Feeds.Messaging\Trip.Feeds.Messaging.csproj" />
     <ProjectReference Include="..\Infrastructure\Trip.Feeds.Persistence\Trip.Feeds.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 
 </Project>

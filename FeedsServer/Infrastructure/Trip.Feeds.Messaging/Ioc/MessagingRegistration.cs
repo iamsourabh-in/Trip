@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Trip.Infrastructure.Common.RabbitMQ;
 
-namespace Trip.Profile.Messaging.Ioc
+namespace Trip.Feeds.Messaging.Ioc
 {
     public static class MessagingRegistration
     {

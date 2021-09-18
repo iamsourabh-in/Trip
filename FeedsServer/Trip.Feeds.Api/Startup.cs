@@ -1,17 +1,16 @@
+using EasyException.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Trip.Feeds.Api.ExceptionHandling;
+using Trip.Feeds.Application.Ioc;
+using Trip.Feeds.Messaging.Ioc;
+using Trip.Feeds.Persistence.Ioc;
 
 namespace Trip.Feeds.Api
 {
@@ -28,11 +27,29 @@ namespace Trip.Feeds.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication("Bearer", options => {
+                .AddIdentityServerAuthentication("Bearer", options =>
+                {
                     options.ApiName = "tripfeed";
                     options.Authority = "https://localhost:5443";
                     options.RequireHttpsMetadata = false;
                 });
+
+            //////////////////////////////////////////
+            /// Register Persistance Services
+            /////////////////////////////////////////
+            services.RegisterPersistanceServices();
+
+            //////////////////////////////////////////
+            /// Register Application Services
+            /////////////////////////////////////////
+            services.RegisterApplicationServices();
+
+            //////////////////////////////////////////
+            /// Register Messaging Services
+            /////////////////////////////////////////
+            services.RegisterMessagingService(Configuration);
+
+            services.AddSingleton<IErrorHandlingService, ErrorHandlingService>();
 
             services.AddSingleton<IMongoClient>(c =>
             {
@@ -40,8 +57,7 @@ namespace Trip.Feeds.Api
                 var password = Uri.EscapeDataString("");
                 var server = "";
 
-                return new MongoClient(
-                    string.Format("mongodb+srv://{0}:{1}@{2}/test?retryWrites=true&w=majority", login, password, server));
+                return new MongoClient(string.Format("mongodb://localhost:27017"));
             });
 
             services.AddScoped(c =>

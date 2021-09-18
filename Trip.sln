@@ -93,6 +93,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F9C795
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Feeds.Application", "FeedsServer\Core\Trip.Feeds.Application\Trip.Feeds.Application.csproj", "{3A55082A-05F9-4021-89DA-352F14E7902E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Feeds.Messaging", "FeedsServer\Infrastructure\Trip.Feeds.Messaging\Trip.Feeds.Messaging.csproj", "{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,10 @@ Global
 		{3A55082A-05F9-4021-89DA-352F14E7902E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A55082A-05F9-4021-89DA-352F14E7902E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A55082A-05F9-4021-89DA-352F14E7902E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -233,6 +239,7 @@ Global
 		{C6FB39DD-D13D-4EDA-8304-8E0DC95E1475} = {330CE834-BF6A-4AB9-A0EC-46D1C6AE8B49}
 		{F9C795AE-1510-48AE-A824-5AE4701B58A4} = {047753EF-72B2-4D8D-92CB-20D8B1064B56}
 		{3A55082A-05F9-4021-89DA-352F14E7902E} = {926089C4-6967-4007-B952-E902E0A4177C}
+		{375AFDB8-BAFD-47CD-A211-29D91DE80DC0} = {8357DE24-FCCD-4E76-82A4-ECC93CB9B05D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68F2BE62-8316-4373-849B-9A019F3CF5E6}
