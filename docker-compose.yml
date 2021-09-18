@@ -1,0 +1,38 @@
+version: '3.9'
+
+networks:
+    localdev:
+        name: localdev
+
+services:
+    identity-api:
+        build: IdentityServer/Trip.Identity/
+        restart: always
+        ports:
+            - "5000:80"
+        networks:
+            - localdev
+    
+    creator-api:
+        build: CreatorService/Trip.Creator.Api/
+        restart: always
+        ports:
+            - "7000:80"
+        networks:
+            - localdev
+    
+    profile-api:
+        build: ProfileService/Trip.Profile.Api/
+        restart: always
+        ports:
+            - "6000:80"
+        networks:
+            - localdev
+    
+    feeds-api:
+        build: FeedsServer/Trip.Feeds.Api/
+        restart: always
+        ports:
+            - "8000:80"
+        networks:
+            - localdev
