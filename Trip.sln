@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
 		README.md = README.md
+		Trip.Creator.Dockerfile = Trip.Creator.Dockerfile
+		Trip.Feeds.Dockerfile = Trip.Feeds.Dockerfile
+		Trip.Identity.Dockerfile = Trip.Identity.Dockerfile
+		Trip.Profile.Dockerfile = Trip.Profile.Dockerfile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{86D7E192-98AA-4711-8866-8AACA8277E50}"
@@ -92,9 +96,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F9C795
 		_docs\images\Screenshot 2021-09-05 125038.jpg = _docs\images\Screenshot 2021-09-05 125038.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Feeds.Application", "FeedsServer\Core\Trip.Feeds.Application\Trip.Feeds.Application.csproj", "{3A55082A-05F9-4021-89DA-352F14E7902E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Feeds.Application", "FeedsServer\Core\Trip.Feeds.Application\Trip.Feeds.Application.csproj", "{3A55082A-05F9-4021-89DA-352F14E7902E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trip.Feeds.Messaging", "FeedsServer\Infrastructure\Trip.Feeds.Messaging\Trip.Feeds.Messaging.csproj", "{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trip.Feeds.Messaging", "FeedsServer\Infrastructure\Trip.Feeds.Messaging\Trip.Feeds.Messaging.csproj", "{375AFDB8-BAFD-47CD-A211-29D91DE80DC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
