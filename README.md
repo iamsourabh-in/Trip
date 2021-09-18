@@ -11,7 +11,7 @@
 This is full stack solution using .Net Technologies.
 
 >A user can upload a photo, video the video and photos thumbnails would be generated and the user can later browser his photos and can share them with friends.
->
+
 
 # Design
 
@@ -47,13 +47,7 @@ Soon...
 # Backend
 The backend is built using .net5 
 
-We are trying to sperate individual domain in the complete work flow and 
-
-- **Identity Service (Identity Server 4)**  - This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
-- **Profile Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
-- **Creator Service**   This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
-- **Feeder Service**  This service is built using .net 5 and have uses Mongo for the Database and is built using a code first approach.
-
+We are trying to sperate individual domain in the complete work flow and we corrently have four major sevices
 
 |                |HTTP              |HTTPS    |
 |----------------|------------------|---------|
@@ -61,6 +55,105 @@ We are trying to sperate individual domain in the complete work flow and
 |Profile Service |`6000`            |`6443`   |
 |Creator Service |`7000`            |`7443`   |
 |Feeder Service  |`8000`            |`8443`   |
+
+
+
+### Identity Service (Identity Server 4)
+This service is built using Identity server 4 and have uses SQLite for the Database and is built using a code first approach.
+<details>
+<summary>WellKnown Endpoint Exposed by identity server : https://localhost:5443/.well-known/openid-configuration</summary>
+<pre>
+{
+  "issuer": "https://localhost:5443",
+  "jwks_uri": "https://localhost:5443/.well-known/openid-configuration/jwks",
+  "authorization_endpoint": "https://localhost:5443/connect/authorize",
+  "token_endpoint": "https://localhost:5443/connect/token",
+  "userinfo_endpoint": "https://localhost:5443/connect/userinfo",
+  "end_session_endpoint": "https://localhost:5443/connect/endsession",
+  "check_session_iframe": "https://localhost:5443/connect/checksession",
+  "revocation_endpoint": "https://localhost:5443/connect/revocation",
+  "introspection_endpoint": "https://localhost:5443/connect/introspect",
+  "device_authorization_endpoint": "https://localhost:5443/connect/deviceauthorization",
+  "frontchannel_logout_supported": true,
+  "frontchannel_logout_session_supported": true,
+  "backchannel_logout_supported": true,
+  "backchannel_logout_session_supported": true,
+  "scopes_supported": [
+    "profile",
+    "openid",
+    "role",
+    "tripfeed.write",
+    "tripfeed.read",
+    "offline_access"
+  ],
+  "claims_supported": [
+    "gender",
+    "website",
+    "picture",
+    "profile",
+    "preferred_username",
+    "nickname",
+    "middle_name",
+    "given_name",
+    "family_name",
+    "name",
+    "birthdate",
+    "zoneinfo",
+    "locale",
+    "updated_at",
+    "sub",
+    "role"
+  ],
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials",
+    "refresh_token",
+    "implicit",
+    "password",
+    "urn:ietf:params:oauth:grant-type:device_code"
+  ],
+  "response_types_supported": [
+    "code",
+    "token",
+    "id_token",
+    "id_token token",
+    "code id_token",
+    "code token",
+    "code id_token token"
+  ],
+  "response_modes_supported": [
+    "form_post",
+    "query",
+    "fragment"
+  ],
+  "token_endpoint_auth_methods_supported": [
+    "client_secret_basic",
+    "client_secret_post"
+  ],
+  "id_token_signing_alg_values_supported": [
+    "RS256"
+  ],
+  "subject_types_supported": [
+    "public"
+  ],
+  "code_challenge_methods_supported": [
+    "plain",
+    "S256"
+  ],
+  "request_parameter_supported": true
+}
+</pre>
+</details>
+
+### Profile Service  
+This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
+
+### Creator Service
+This service is built using .net 5 and have uses SQLite for the Database and is built using a code first approach.
+
+### Feeder Service
+This service is built using .net 5 and have uses Mongo for the Database and is built using a code first approach.
+
 
 
 # Frontend
