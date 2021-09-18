@@ -87,6 +87,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{F9C795AE-1510-48AE-A824-5AE4701B58A4}"
 	ProjectSection(SolutionItems) = preProject
 		_docs\images\admin_panel.jpg = _docs\images\admin_panel.jpg
+		C:\Users\Sourabh\Downloads\aws.svg = C:\Users\Sourabh\Downloads\aws.svg
 		_docs\images\clean.png = _docs\images\clean.png
 		_docs\images\Screenshot 2021-09-05 125038.jpg = _docs\images\Screenshot 2021-09-05 125038.jpg
 	EndProjectSection
