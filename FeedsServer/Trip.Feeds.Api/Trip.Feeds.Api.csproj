@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="D:\Work\Trip\Trip\CreatorService\Trip.Creator.Api\Protos\Content.proto" GrpcServices="Client"></Protobuf>
+    <Protobuf Include="..\..\CreatorService\Trip.Creator.Api\Protos\Content.proto" GrpcServices="Client"></Protobuf>
   </ItemGroup>
 
   <ItemGroup>

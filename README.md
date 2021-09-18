@@ -234,6 +234,25 @@ This service is using mongodb and dont require Migrations.`27017`
 ## Identity Auth Flow
 
 
+# Docker File Settings
+
+```sh
+docker build -t trip-Identity -f Trip.Identity.Dockerfile .   
+
+docker build -t trip-Creator -f Trip.Creator.Dockerfile .   
+
+docker build -t trip-Profile -f Trip.Profile.Dockerfile .   
+
+docker build -t trip-Feeds -f Trip.Feeds.Dockerfile .   
+```
+
+# Docker Compose Settings
+
+```sh
+docker-compose up 
+```
+
+
 ```mermaid
 sequenceDiagram
 TripperUI ->> Identity Service: .well-know endpoint 
