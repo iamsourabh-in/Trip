@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,19 @@ namespace Trip.Feeds.Api
                     options.Authority = "https://localhost:5443";
                     options.RequireHttpsMetadata = false;
                 });
+
+            services.AddSingleton<IMongoClient>(c =>
+            {
+                var login = "";
+                var password = Uri.EscapeDataString("");
+                var server = "";
+
+                return new MongoClient(
+                    string.Format("mongodb+srv://{0}:{1}@{2}/test?retryWrites=true&w=majority", login, password, server));
+            });
+
+            services.AddScoped(c =>
+                c.GetService<IMongoClient>().StartSession());
 
 
             services.AddControllers();

@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+    <ProjectReference Include="..\Trip.Feeds.Domain\Trip.Feeds.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Trip.Feeds.Application\Trip.Feeds.Application.csproj" />
+    <Folder Include="Features\" />
   </ItemGroup>
 
 </Project>
