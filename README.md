@@ -244,14 +244,29 @@ docker build -t trip-Creator -f Trip.Creator.Dockerfile .
 docker build -t trip-Profile -f Trip.Profile.Dockerfile .   
 
 docker build -t trip-Feeds -f Trip.Feeds.Dockerfile .   
+
+Extras :
+
+docker network connect DockerNetwork rabbitmq
 ```
 
 # Docker Compose Settings
 
 ```sh
 docker-compose up 
+
+docker-compose up feeds-api
+
+
+docker exec -ti feeds ifconfig
 ```
 
+# Docker NEtwork
+
+```sh
+docker network create DockerNetwork
+docker network connect DockerNetwork rabbitmq
+```
 
 ```mermaid
 sequenceDiagram
