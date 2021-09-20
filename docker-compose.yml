@@ -1,50 +1,65 @@
 version: '3.9'
 
+networks:
+    dockernetwork:
+        name: DockerNetwork
+
 services:
     identity-api:
         build:
             context: .
             dockerfile: Trip.Identity.Dockerfile
+        networks:
+            - dockernetwork
         depends_on:
             - rabbitmq3
         restart: always
         ports:
-            - "5000:5000"
+            - "5000:80"
+
     
     creator-api:
         build:
             context: .
             dockerfile: Trip.Creator.Dockerfile
+        networks:
+            - dockernetwork
         depends_on:
             - rabbitmq3
         restart: always
         ports:
-            - "7000:7000"
+            - "7000:80"
     
     profile-api:
         build:
             context: .
             dockerfile: Trip.Profile.Dockerfile
+        networks:
+            - dockernetwork
         depends_on:
             - rabbitmq3
         restart: always
         ports:
-            - "6000:6000"
+            - "6000:80"
     
     feeds-api:
         build:
-            context: .
-            dockerfile: Trip.Feeds.Dockerfile
+            context: ./FeedsServer/Trip.Feeds.Api/
+            dockerfile: Dockerfile
+        networks:
+            - dockernetwork
         depends_on:
             - rabbitmq3
         restart: always
         ports:
-            - "8000:8000"
+            - "8000:80"
 
 
     rabbitmq3:
         container_name: "rabbitmq"
         image: rabbitmq:3-management
+        networks:
+            - dockernetwork
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=guest
