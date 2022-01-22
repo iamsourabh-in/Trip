@@ -25,6 +25,30 @@ namespace Trip.Creator.Persistence.Builder
                 entity.HasKey(e => e.Id);
             });
 
+            modelBuilder.Entity<Restaurant>().ToTable("Restaurant");
+            modelBuilder.Entity<Restaurant>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.Modified).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            });
+
+            modelBuilder.Entity<Menu>().ToTable("Menu");
+            modelBuilder.Entity<Menu>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.Modified).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            });
+
+            modelBuilder.Entity<Dish>().ToTable("Dish");
+            modelBuilder.Entity<Dish>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Created).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.Modified).HasDefaultValueSql("CURRENT_TIMESTAMP");
+            });
+
         }
     }
 }

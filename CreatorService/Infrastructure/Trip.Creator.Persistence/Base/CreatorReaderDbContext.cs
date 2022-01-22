@@ -10,6 +10,12 @@ namespace Trip.Creator.Persistence.Base
 
         public DbSet<CreationResource> CreationResource { get; set; }
 
+        public DbSet<Restaurant> Restaurants { get; set; }
+
+        public DbSet<Menu> Menus { get; set; }
+
+        public DbSet<Dish> Dishes { get; set; }
+
         public CreatorReaderDbContext(DbContextOptions<CreatorReaderDbContext> options) : base(options)
         {
 

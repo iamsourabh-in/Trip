@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="Feature\Content\Queries\GetContentDetails\" />
+    <Folder Include="Feature\Restaurant\Commands\UpdateRestaurant\" />
+    <Folder Include="Feature\Restaurant\Queries\" />
   </ItemGroup>
 
 </Project>

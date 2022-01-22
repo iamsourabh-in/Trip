@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
     <UserSecretsId>5d53f85d-1393-45e0-903b-f3540953ce3f</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
