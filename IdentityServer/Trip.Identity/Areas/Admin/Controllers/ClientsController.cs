@@ -12,8 +12,6 @@ using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Policy = "AdministratorRole")]
     public class ClientsController : Controller
     {
         private readonly IMapper _mapper;

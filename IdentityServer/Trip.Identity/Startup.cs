@@ -70,17 +70,17 @@ namespace Trip.Identity
                 })
                 .AddDeveloperSigningCredential();
 
-            services.AddAuthentication("MyCookieId")
-             .AddCookie("MyCookieId", options =>
-             {
-                 options.AccessDeniedPath = "/account/denied";
-                 options.LoginPath = "/account/login";
-             });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("AdministratorRole",
-                     policy => policy.RequireRole("Admin"));
-            });
+            //services.AddAuthentication("MyCookieId")
+            // .AddCookie("MyCookieId", options =>
+            // {
+            //     options.AccessDeniedPath = "/account/denied";
+            //     options.LoginPath = "/account/login";
+            // });
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("AdministratorRole",
+            //         policy => policy.RequireRole("Admin"));
+            //});
 
             //Idenitty Way of doing it Dynamically
 

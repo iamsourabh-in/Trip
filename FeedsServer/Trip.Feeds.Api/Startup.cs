@@ -1,4 +1,5 @@
 using EasyException.Abstractions;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,13 +30,16 @@ namespace Trip.Feeds.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication("Bearer", options =>
-                {
-                    options.ApiName = "tripfeed";
-                    options.Authority = "https://localhost:5443";
-                    options.RequireHttpsMetadata = false;
-                });
+            //////////////////////////////////////////
+            /// Token Validation using IdentityServer4 Jwks
+            /////////////////////////////////////////
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.ApiName = "tripfeed";
+                options.Authority = "http://localhost:5000";
+                options.RequireHttpsMetadata = false;
+            });
 
             //////////////////////////////////////////
             /// Register Persistance Services

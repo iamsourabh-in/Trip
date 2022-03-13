@@ -1,6 +1,7 @@
 using EasyException.Abstractions;
 using EasyException.Middleware;
 using EasyException.Models;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -43,11 +44,11 @@ namespace Trip.Profile.Api
             //////////////////////////////////////////
             /// Token Validation using IdentityServer4 Jwks
             /////////////////////////////////////////
-            services.AddAuthentication("Bearer")
-            .AddIdentityServerAuthentication("Bearer", options =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
             {
                 options.ApiName = "tripfeed";
-                options.Authority = "https://localhost:5443";
+                options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
             });
 

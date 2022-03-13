@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using Trip.Identity.Areas.Admin.Controllers.Base;
 using Trip.Identity.Areas.Admin.Models.IdentityResource;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class IdentityResourcesController : Controller
+    public class IdentityResourcesController : AdminAreaController
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _appDbContext;

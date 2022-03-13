@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Trip.Identity.Areas.Admin.Controllers.Base;
 using Trip.Identity.Areas.Admin.Models;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class DashboardController : Controller
+
+    public class DashboardController : AdminAreaController
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _dbContext;

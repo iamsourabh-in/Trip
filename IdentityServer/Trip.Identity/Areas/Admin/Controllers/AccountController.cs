@@ -8,14 +8,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using Trip.Identity.Areas.Admin.Controllers.Base;
 using Trip.Identity.Areas.Admin.Models.Accounts;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
     [AllowAnonymous]
-    [Area("Admin")]
-    public class AccountController : Controller
+   
+    public class AccountController : AdminAreaController
     {
 
         private readonly SignInManager<ApplicationUser> _signInManager;

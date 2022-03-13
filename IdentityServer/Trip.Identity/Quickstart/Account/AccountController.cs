@@ -141,7 +141,7 @@ namespace IdentityServerHost.Quickstart.UI
                     var isuser = new IdentityServerUser(user.Id)
                     {
                         DisplayName = user.UserName,
-                        AdditionalClaims = new List<Claim>() { new Claim("Roles", "User") }
+                        AdditionalClaims = new List<Claim>() { new Claim(JwtClaimTypes.Role, "User") }
                     };
                     var roles = await _signInManager.UserManager.GetRolesAsync(user);
                     var claims = await _signInManager.UserManager.GetClaimsAsync(user);

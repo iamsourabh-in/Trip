@@ -17,6 +17,7 @@ using Trip.Infrastructure.Common.RabbitMQ;
 using Trip.Domain.Common.Messaging.Creator;
 using Xabe.FFmpeg.Downloader;
 using Trip.Creator.Api.GrpcServices;
+using IdentityServer4.AccessTokenValidation;
 
 namespace Trip.Creator.Api
 {
@@ -38,11 +39,11 @@ namespace Trip.Creator.Api
             //////////////////////////////////////////
             /// Token Validation using IdentityServer4 Jwks
             /////////////////////////////////////////
-            services.AddAuthentication("Bearer")
-            .AddIdentityServerAuthentication("Bearer", options =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            .AddIdentityServerAuthentication(options =>
             {
-                options.ApiName = "tripcreator";
-                options.Authority = "https://localhost:5443";
+                options.ApiName = "tripfeed";
+                options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
             });
 

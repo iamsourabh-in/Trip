@@ -11,4 +11,9 @@ namespace Trip.Identity.Areas.Admin.Models.Roles
         public string Name { get; set; }
         public string DisplayName { get; set; }
     }
+
+    public class CreateRoleViewModel
+    {
+        public string Name { get; set; }
+    }
 }

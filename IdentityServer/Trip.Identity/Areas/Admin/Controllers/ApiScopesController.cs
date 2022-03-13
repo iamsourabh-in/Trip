@@ -1,20 +1,18 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.DbContexts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Trip.Identity.Areas.Admin.Controllers.Base;
 using Trip.Identity.Areas.Admin.Models.ApiScopes;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class ApiScopesController : Controller
+
+    public class ApiScopesController : AdminAreaController
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _appDbContext;

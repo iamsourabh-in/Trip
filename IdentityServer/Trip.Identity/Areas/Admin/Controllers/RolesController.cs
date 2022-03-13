@@ -7,13 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Trip.Identity.Areas.Admin.Controllers.Base;
 using Trip.Identity.Areas.Admin.Models.Roles;
 using Trip.Identity.Persistence.Data;
 
 namespace Trip.Identity.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class RolesController : Controller
+    public class RolesController : AdminAreaController
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _appDbContext;
@@ -59,7 +59,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
                 var roleName = collection["Name"].ToString();
                 var role = await _roleManager.FindByNameAsync(roleName);
                 if (role is not null)
-                    throw new Exception("Role already Exists");
+                    return new BadRequestObjectResult("Role already Exists");
                 await _roleManager.CreateAsync(new IdentityRole() { Name = roleName, NormalizedName = roleName.ToLower() });
                 return RedirectToAction(nameof(Index));
             }
@@ -88,7 +88,7 @@ namespace Trip.Identity.Areas.Admin.Controllers
                 var roleName = collection["Name"].ToString();
                 var xrole = _roleManager.FindByNameAsync(roleName);
                 if (xrole is not null)
-                    throw new Exception("Role already Exists");
+                    return new BadRequestObjectResult("Role already Exists");
 
                 role.Name = roleName;
                 await _roleManager.UpdateAsync(role);

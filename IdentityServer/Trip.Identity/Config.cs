@@ -80,6 +80,7 @@ namespace Trip.Identity
         public static IEnumerable<ApiScope> ApiScopes =>
           new[]
           {
+            new ApiScope("tripfeed"),
             new ApiScope("tripfeed.read"),
             new ApiScope("tripfeed.write"),
             new ApiScope("tripcreator.read"),
@@ -91,7 +92,7 @@ namespace Trip.Identity
         {
               new ApiResource("tripfeed")
               {
-                Scopes = new List<string> { "tripfeed.read", "tripfeed.write"},
+                Scopes = new List<string> { "tripfeed.read", "tripfeed.write" , "tripfeed" },
                 ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
                 UserClaims = new List<string> {"role"}
               }
@@ -104,6 +105,18 @@ namespace Trip.Identity
                 new Client
                 {
                   ClientId = "m2m.client",
+                  ClientName = "Client Credentials Client",
+
+                  AllowedGrantTypes = GrantTypes.ClientCredentials,
+                  ClientSecrets = {new Secret("SuperSecretPassword".Sha256())},
+
+                  AllowedScopes = { "tripfeed.read", "tripfeed.write" , "tripcreator.read" , "tripcreator.write" , "tripprofile.read", "tripprofile.write" }
+                },
+
+                // m2m client credentials flow client
+                new Client
+                {
+                  ClientId = "m2m.client.admin",
                   ClientName = "Client Credentials Client",
 
                   AllowedGrantTypes = GrantTypes.ClientCredentials,
